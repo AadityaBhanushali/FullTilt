@@ -34,7 +34,7 @@ internal static class PieBackdropDiagnostics
             foreach (var handle in new[] { hiddenWindow, hostHandle })
                 if (!GetWindowRect(handle, out var rect) || rect.Left != -30000 || rect.Top != -30000 ||
                     rect.Right - rect.Left != size || rect.Bottom - rect.Top != size)
-                    throw new InvalidOperationException("Backdrop/artwork physical placement differs.");
+                    throw new InvalidOperationException($"Backdrop/artwork physical placement differs: requested (-30000,-30000,{size},{size}); actual ({rect.Left},{rect.Top},{rect.Right - rect.Left},{rect.Bottom - rect.Top}); DPI={NativeMethods.GetDpiForWindow(handle)}; work area={SystemParameters.WorkArea}; host={handle == hostHandle}.");
             const long layered = 0x80000;
             if ((hostStyles & (StateIndicator.NonInteractiveStyles | layered)) != (StateIndicator.NonInteractiveStyles | layered) ||
                 host.ShowActivated || host.ShowInTaskbar || host.IsHitTestVisible || overlay.Owner != host)
