@@ -7,3 +7,5 @@ dotnet run --project tests/FullTilt.Tests/FullTilt.Tests.csproj -c Release --no-
 Assert-NativeSuccess 'Automated tests'
 & "$PSScriptRoot/test-release.ps1"
 & "$PSScriptRoot/test-navigation-fix.ps1"
+& "$env:WINDIR/System32/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "$PSScriptRoot/test-navigation-fix.ps1"
+Assert-NativeSuccess 'Windows PowerShell navigation utility checks'

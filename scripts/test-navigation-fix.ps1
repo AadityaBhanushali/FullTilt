@@ -8,6 +8,7 @@ $cases=@(
     @{Exists=$true;Key=$true;Kind='DWord';Data=-1},
     @{Exists=$true;Key=$true;Kind='QWord';Data=[long]9223372036854775807},
     @{Exists=$true;Key=$true;Kind='String';Data='original'},
+    @{Exists=$true;Key=$true;Kind='String';Data=([char]0x6F22).ToString()},
     @{Exists=$true;Key=$true;Kind='ExpandString';Data='%SystemRoot%'},
     @{Exists=$true;Key=$true;Kind='Binary';Data=[byte[]]@(0,255,42)},
     @{Exists=$true;Key=$true;Kind='Binary';Data=[byte[]]@()},

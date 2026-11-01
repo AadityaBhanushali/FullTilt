@@ -76,7 +76,7 @@ function New-NavigationBackend {
                 $sid=$rule.IdentityReference.Translate([Security.Principal.SecurityIdentifier]).Value
                 if ($rule.AccessControlType -eq 'Allow' -and $sid -notin @($admins.Value,$system.Value)) { throw 'Backup permissions are not private to administrators and SYSTEM.' }
             }
-            return (Get-Content -LiteralPath $backup -Raw | ConvertFrom-Json)
+            return ([IO.File]::ReadAllText($backup) | ConvertFrom-Json)
         }.GetNewClosure()
         Save = {
             param($state)
