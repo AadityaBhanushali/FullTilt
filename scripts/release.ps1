@@ -31,6 +31,11 @@ foreach ($relative in @('docs/RELEASING.md','docs/screenshots/keybindings.png','
     Copy-Item -LiteralPath (Join-Path $repoRoot $relative) -Destination $targetFile -ErrorAction Stop
 }
 $notices = Join-Path $staging 'runtime-notices'
+$utility = Join-Path $staging 'FullTilt-Controller-Navigation-Fix'
+New-Item -ItemType Directory -Path $utility -Force | Out-Null
+foreach ($name in @('ControllerNavigationFix.ps1','Disable_Windows_Controller_UI_Navigation.ps1','Restore_Windows_Default_Controller_Navigation.ps1','Disable_Windows_Controller_UI_Navigation.reg','Restore_Windows_Default_Controller_Navigation.reg','README.md','README.txt')) {
+    Copy-Item -LiteralPath (Join-Path $repoRoot "FullTilt-Controller-Navigation-Fix/$name") -Destination $utility -ErrorAction Stop
+}
 $runtimePacks = Get-Content -LiteralPath (Join-Path $package 'runtime-packs.json') -Raw | ConvertFrom-Json
 foreach ($runtimePack in $runtimePacks) {
     $packName = $runtimePack.Name

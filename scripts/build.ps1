@@ -6,3 +6,4 @@ Assert-NativeSuccess 'Release build'
 dotnet run --project tests/FullTilt.Tests/FullTilt.Tests.csproj -c Release --no-build -- artifacts/test-results.xml
 Assert-NativeSuccess 'Automated tests'
 & "$PSScriptRoot/test-release.ps1"
+& "$PSScriptRoot/test-navigation-fix.ps1"

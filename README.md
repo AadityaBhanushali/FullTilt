@@ -72,6 +72,13 @@ To update: exit FullTilt, back up your current folder, then extract the new appl
 
 **Development build migration:** the former “4.8” development build has numeric version **1.4.8**, which compares newer than public **1.0.0**. Development users must manually install this first public version and copy Profiles before starting it. Public 1.0.0 then detects future public versions such as 1.1.0 normally. The profile schema remains 17; executable version changes do not reset saved settings.
 
+## Windows Controller Navigation Conflict
+
+Some Windows 11 systems use built-in controller navigation in Start, notification panels and other system interfaces, which can conflict with FullTilt's cursor controls. The download includes an optional **FullTilt-Controller-Navigation-Fix** folder. Use it only if you experience this issue.
+
+The utility requires administrator privileges and changes one machine-wide Windows registry setting. Its PowerShell entry points preserve the original value/type or absence and provide accurate restoration. It never runs automatically and is not required to install or use FullTilt. See [application and restoration instructions](FullTilt-Controller-Navigation-Fix/README.md). Windows-build behavior varies.
+
+
 ## More application views
 
 ![Movement settings](docs/screenshots/movement.png)

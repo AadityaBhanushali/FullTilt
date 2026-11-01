@@ -14,6 +14,7 @@ First public release of FullTilt, a free, open-source controller alternative to 
 - Save profiles, retain portable settings, and undo or discard assignment drafts.
 - Use the Dark, Light or system theme, tray controls, and configurable pause shortcut.
 - Check GitHub for stable updates manually or automatically; installation remains manual.
+- Includes the optional FullTilt-Controller-Navigation-Fix utility for conflicting Windows controller navigation, with administrator-only original-state backup and restoration. FullTilt never applies it automatically.
 
 ### Install or update
 
