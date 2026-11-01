@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework><SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets/FullTilt.ico</ApplicationIcon>
+    <AssemblyName>FullTilt</AssemblyName>
+    <Version>1.0.0</Version>
+    <Product>FullTilt</Product>
+    <Description>Portable XInput controller mouse for Windows</Description>
+    <PublishTrimmed>false</PublishTrimmed>
+    <DebugType Condition="'$(Configuration)' != 'Release'">embedded</DebugType>
+    <!-- WPF owns startup and DPI awareness; WinForms is used only for NotifyIcon. -->
+    <NoWarn>$(NoWarn);WFO0003</NoWarn>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="../FullTilt.Windows/FullTilt.Windows.csproj" /></ItemGroup>
+  <ItemGroup><Resource Include="Assets/FullTilt.ico" /><Resource Include="Assets/FullTilt-logo.json" /><Resource Include="Assets/controller-3.5.png" /></ItemGroup>
+  <ItemGroup><Resource Include="Assets/LaunchLinks.json" /></ItemGroup>
+</Project>

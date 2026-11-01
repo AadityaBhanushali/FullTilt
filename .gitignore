@@ -1,0 +1,50 @@
+# Build, publication, and test outputs
+**/bin/
+**/obj/
+artifacts/
+Finals/
+.build/
+publish/
+TestResults/
+coverage/
+
+# IDE caches and per-user state
+.vs/
+.idea/
+.vscode/
+_ReSharper*/
+*.DotSettings.user
+*.user
+*.suo
+
+# Logs and crash dumps
+logs/
+*.log
+*.dmp
+
+# Local secrets and credentials (sanitized examples may be tracked)
+.env
+.env.*
+!.env.example
+!.env.sample
+secrets/
+secrets.json
+*.secrets.json
+credentials.json
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Local application settings
+.impeccable/config.local.json
+FullTilt.portable
+settings.json
+settings.json.*
+Profiles/
+app-preferences.json
+app-preferences.json.*
+*.zip
+*.7z
+Thumbs.db
+Desktop.ini

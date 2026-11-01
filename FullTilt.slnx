@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FullTilt.Core/FullTilt.Core.csproj" />
+    <Project Path="src/FullTilt.Windows/FullTilt.Windows.csproj" />
+    <Project Path="src/FullTilt/FullTilt.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FullTilt.Tests/FullTilt.Tests.csproj" />
+  </Folder>
+</Solution>

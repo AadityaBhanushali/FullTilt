@@ -1,0 +1,7 @@
+<Window x:Class="FullTilt.StateIndicator" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False" ShowActivated="False"
+        Topmost="True" Focusable="False" IsHitTestVisible="False" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Left="0" Top="0">
+  <Border Background="#F0203038" CornerRadius="8" Padding="16,10" BorderBrush="#7FAEA6" BorderThickness="1">
+    <TextBlock x:Name="StateText" Foreground="White" FontFamily="Segoe UI" FontSize="13" FontWeight="SemiBold" />
+  </Border>
+</Window>

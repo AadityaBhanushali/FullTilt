@@ -1,0 +1,186 @@
+{
+  "Version": 17,
+  "CursorSpeed": 600,
+  "PrecisionCursorSpeed": 200,
+  "BoostedCursorSpeed": 3000,
+  "PrecisionSpeed": 600,
+  "DPadTapDistance": 5,
+  "SpeedBoostMultiplier": 10,
+  "PrecisionPercent": 50,
+  "CursorStick": "Left",
+  "DPadMode": "AssignedActions",
+  "PauseShortcut": "DPadUp, B, Y",
+  "ShowStateIndicator": true,
+  "ScrollSpeed": 10,
+  "ScrollBoostMultiplier": 4,
+  "ReverseScroll": false,
+  "LeftDeadZone": 0.05,
+  "RightDeadZone": 0.05,
+  "ResponseCurve": 2.6,
+  "TriggerPressThreshold": 140,
+  "TriggerReleaseThreshold": 100,
+  "ControllerSlot": -1,
+  "TrayHintShown": false,
+  "Mappings": {
+    "A": "LeftClick",
+    "X": "RightClick",
+    "Y": "MiddleClick",
+    "B": "None",
+    "LB": "None",
+    "RB": "None",
+    "LT": "SpeedBoostHold",
+    "RT": "None",
+    "L3": "None",
+    "R3": "None",
+    "DPadUp": "ArrowUp",
+    "DPadDown": "ArrowDown",
+    "DPadLeft": "ArrowLeft",
+    "DPadRight": "ArrowRight"
+  },
+  "RecordedBindings": {
+    "B": {
+      "Keys": [
+        {
+          "VirtualKey": 20,
+          "ScanCode": 58,
+          "Extended": false,
+          "Name": "Caps Lock"
+        }
+      ]
+    }
+  },
+  "PieMenus": [
+    {
+      "Id": "098db238-091f-4507-bbb5-54447e9c7ec9",
+      "Name": "Media",
+      "Slots": [
+        "PlayPause",
+        "NextTrack",
+        "VolumeUp",
+        "Mute",
+        "VolumeDown",
+        "PreviousTrack"
+      ],
+      "SegmentCount": 6,
+      "PresetId": "media",
+      "SizePercent": 100,
+      "DPadActions": [
+        "VolumeUp",
+        "VolumeDown",
+        "ArrowLeft",
+        "ArrowRight"
+      ],
+      "RecordedSlots": {},
+      "RecordedDPad": {}
+    },
+    {
+      "Id": "581d6056-d848-4962-bf26-d576f54d714d",
+      "Name": "Browsing",
+      "Slots": [
+        "ReopenTab",
+        "CloseTab",
+        "Forward",
+        "Refresh",
+        "FindOnPage",
+        "FocusAddressBar",
+        "Back",
+        "NewTab"
+      ],
+      "SegmentCount": 8,
+      "PresetId": "browsing",
+      "SizePercent": 100,
+      "DPadActions": [
+        "BrowserZoomIn",
+        "BrowserZoomOut",
+        "PreviousTab",
+        "NextTab"
+      ],
+      "RecordedSlots": {},
+      "RecordedDPad": {}
+    },
+    {
+      "Id": "6ec5bda4-c0de-4c8f-85e0-1eb55e04b31c",
+      "Name": "Windows",
+      "Slots": [
+        "TaskView",
+        "WindowsSearch",
+        "SnapRight",
+        "MaximizeWindow",
+        "RestoreWindow",
+        "MinimizeWindow",
+        "SnapLeft",
+        "ShowDesktop"
+      ],
+      "SegmentCount": 8,
+      "PresetId": "windows",
+      "SizePercent": 100,
+      "DPadActions": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "RecordedSlots": {},
+      "RecordedDPad": {}
+    },
+    {
+      "Id": "41d9116c-3f6a-4175-aef6-cf9917987c47",
+      "Name": "Editing",
+      "Slots": [
+        "Copy",
+        "Paste",
+        "Redo",
+        "SelectAll",
+        "Delete",
+        "None",
+        "Undo",
+        "Cut"
+      ],
+      "SegmentCount": 8,
+      "PresetId": "editing",
+      "SizePercent": 100,
+      "DPadActions": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "RecordedSlots": {},
+      "RecordedDPad": {}
+    },
+    {
+      "Id": "2d39a336-0a7a-4154-97a3-b0ac8058b7f8",
+      "Name": "Keyboard",
+      "Slots": [
+        "ToggleKeyboard",
+        "VoiceTyping",
+        "Enter",
+        "StickyAlt",
+        "StickyCtrl",
+        "ReleaseModifiers",
+        "Backspace",
+        "Space"
+      ],
+      "SegmentCount": 8,
+      "PresetId": null,
+      "SizePercent": 100,
+      "DPadActions": [
+        "Enter",
+        null,
+        "Backspace",
+        "Space"
+      ],
+      "RecordedSlots": {},
+      "RecordedDPad": {}
+    }
+  ],
+  "PieMenuSizePercent": 120,
+  "PieBindings": {
+    "RB": "41d9116c-3f6a-4175-aef6-cf9917987c47",
+    "R3": "6ec5bda4-c0de-4c8f-85e0-1eb55e04b31c",
+    "LB": "098db238-091f-4507-bbb5-54447e9c7ec9",
+    "L3": "6ec5bda4-c0de-4c8f-85e0-1eb55e04b31c",
+    "RT": "2d39a336-0a7a-4154-97a3-b0ac8058b7f8"
+  },
+  "PiePresetMigration": 1
+}
