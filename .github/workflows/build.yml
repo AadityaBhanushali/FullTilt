@@ -19,3 +19,8 @@ jobs:
       - name: Restore, build and fake-adapter tests
         shell: pwsh
         run: ./scripts/build.ps1
+      - name: Publish and verify portable application offscreen
+        shell: pwsh
+        run: |
+          ./scripts/publish.ps1 -SkipBuild
+          ./scripts/verify-package.ps1

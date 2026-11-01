@@ -12,7 +12,13 @@ for ($attempt = 0; $attempt -lt 8; $attempt++) {
     if ($process.WaitForExit(60000)) { $completed = $true; break }
 }
 if (-not $completed) { throw 'Package diagnostic did not finish within 480 seconds.' }
-if ($process.ExitCode -ne 0) { throw "Package diagnostic failed with exit code $($process.ExitCode). See $output." }
+if ($process.ExitCode -ne 0) {
+    foreach ($name in @('smoke-test-error.txt','diagnostic-progress.txt')) {
+        $diagnostic=Join-Path $output $name
+        if (Test-Path -LiteralPath $diagnostic) { (Get-Content -LiteralPath $diagnostic -Raw).Replace($repoRoot,'<workspace>') | Write-Host }
+    }
+    throw "Package diagnostic failed with exit code $($process.ExitCode). See $output."
+}
 $report = Join-Path $output 'smoke-test.txt'
 if (-not (Test-Path -LiteralPath $report)) { throw 'Diagnostic report is missing.' }
 Get-Content -LiteralPath $report
