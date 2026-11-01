@@ -22,10 +22,16 @@ internal static class PieBackdropDiagnostics
     {
         var foreground = NativeMethods.GetForegroundWindow();
         var styles = NativeMethods.GetWindowLongPtr(hiddenWindow, -20);
-        // Both owned diagnostic HWNDs stay outside the virtual desktop. Exercise
-        // actual show/hide/render without input workers or real target windows.
-        foreach (var size in new[] { 440, 660, 880, 440 })
+        var monitor = new NativeMethods.MonitorInfo { Size = Marshal.SizeOf<NativeMethods.MonitorInfo>() };
+        if (!NativeMethods.GetMonitorInfo(NativeMethods.MonitorFromWindow(hiddenWindow, 2), ref monitor))
+            throw new System.ComponentModel.Win32Exception(Marshal.GetLastPInvokeError());
+        // Use the same physical work-area/DPI fit as Display: Windows may clamp a
+        // larger HWND on a small hosted desktop (for example 1024x720). Keep both
+        // owned HWNDs offscreen; never move a real target or start input workers.
+        foreach (var percent in new[] { 100, 150, 200, 100 })
         {
+            var size = PiePlacement.Fit(0, 0, monitor.Work.Left, monitor.Work.Top, monitor.Work.Right, monitor.Work.Bottom,
+                NativeMethods.GetDpiForWindow(hiddenWindow), percent).Size;
             overlay.ShowAt(-30000, -30000, size);
             overlay.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
             var host = overlay.BackdropWindow ?? throw new InvalidOperationException("Backdrop owner missing.");
