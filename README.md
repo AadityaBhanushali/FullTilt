@@ -54,9 +54,6 @@ If holding or using a mouse for long periods is uncomfortable, FullTilt offers a
 </tr>
 </table>
 
-> [!NOTE]
-> FullTilt is a software tool, not a medical device. It makes no claim to treat, prevent or relieve RSI or any other condition. If you have pain, numbness or tingling, please talk to a health professional.
-
 ## Get started
 
 **[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** and extract it (right-click → **Extract All**). Then:
