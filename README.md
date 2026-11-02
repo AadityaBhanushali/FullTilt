@@ -5,10 +5,10 @@
   <img alt="FullTilt" src="docs/media/logo-light.svg" width="360">
 </picture>
 
-### Your controller, your desktop.
+## A better way to control your desktop.
 
-**Use a game controller as a mouse and keyboard on Windows.**
-Built for couch navigation, and as a gentler alternative to the mouse.
+Turn your game controller into a fully functional mouse and keyboard for Windows.<br>
+Move your cursor, click, scroll and navigate your desktop, all without reaching for a mouse.
 
 [![Latest release](https://img.shields.io/github/v/release/adityabhanushali-arch/FullTilt?color=C8F35B&labelColor=18251B&label=release)](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)
 [![Build](https://github.com/adityabhanushali-arch/FullTilt/actions/workflows/build.yml/badge.svg)](https://github.com/adityabhanushali-arch/FullTilt/actions/workflows/build.yml)
@@ -25,22 +25,30 @@ Built for couch navigation, and as a gentler alternative to the mouse.
 
 </div>
 
-## Why FullTilt
+## What is FullTilt?
 
-FullTilt turns an Xbox-style controller into a complete pointer and keyboard for Windows. One stick moves the cursor, the other scrolls, the face buttons click, and radial **pie menus** put your shortcuts under your thumb. There is no installer, account, or service. Download, unzip, run.
+FullTilt gives you a different, more convenient way to use Windows with a game controller.
+
+Whether you're gaming, relaxing on the couch or using your PC from a distance, FullTilt lets you control your entire desktop without switching between your controller, mouse and keyboard.
+
+It's also an alternative for people who find a traditional mouse uncomfortable or difficult to use, including those with repetitive strain injuries (RSI). Customizable controls, adjustable sensitivity and precision movement let you navigate your desktop in a way that works better for you.
+
+No installer, account or setup wizard: download, unzip and run.
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🛋️ Navigate Windows from the couch
-Browse, watch, read and manage windows from across the room without a keyboard on your lap or a mouse on a cushion. Media controls, browser tabs, window snapping and a touch keyboard are one pie menu away.
+### 🎮 Made for gaming and couch navigation
+
+Stay on your controller even when you're outside a game. Browse the web, manage windows, control media and get around Windows comfortably from your couch. Customizable shortcuts and radial **pie menus** keep everyday actions within easy reach.
 
 </td>
 <td width="50%" valign="top">
 
-### 🖱️ A different way to use the pointer
-If long mouse sessions leave you uncomfortable, a controller lets you point, click and scroll with a different grip and posture. Pair it with the **Precision** and **Speed Boost** modes to keep movements small and relaxed, and customize every control to fit how you work.
+### 🖱️ An alternative to the traditional mouse
+
+If holding or using a mouse for long periods is uncomfortable, FullTilt offers another way to control your cursor. Adjust movement speed, fine-tune **Precision** mode and customize button assignments to suit your comfort.
 
 </td>
 </tr>
