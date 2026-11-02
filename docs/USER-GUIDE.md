@@ -11,7 +11,7 @@ Everything you need after the [quick start in the README](../README.md#get-start
 - [Updating and rolling back](#updating-and-rolling-back)
 - [Default setup](#default-setup)
 - [Troubleshooting](#troubleshooting)
-- [Windows Navigation Fix](#windows-navigation-fix)
+- [Step 1: Windows controller fix](#step-1-windows-controller-fix)
 
 ## The four pages
 
@@ -57,7 +57,7 @@ To update:
 
 1. Exit FullTilt (**File → Exit FullTilt**).
 2. Back up your current folder.
-3. Download the new `FullTilt-win-x64.zip` and extract it **over** your current folder, or extract it to a new folder and copy your `Profiles` folder in **before** first launch. Release ZIPs contain no personal settings.
+3. Download the new `FullTilt-win-x64.zip` and extract it **over** your current folder, or extract it to a new folder and copy your `Profiles` folder in **before** first launch. Release ZIPs contain no personal settings, so your `Profiles` folder is kept.
 
 To roll back, run the old folder you kept, along with the backup of its `Profiles` folder.
 
@@ -85,9 +85,9 @@ Movement defaults: normal cursor **600 px/s**, precision **200 px/s**, boosted *
 
 **Some apps ignore FullTilt.** FullTilt sends normal Windows input. Windows blocks input from a standard process into an elevated (administrator) window, and some games read hardware directly. Run FullTilt as administrator only if you understand the trade-offs.
 
-**Windows' own controller navigation fights with FullTilt in Start, Quick Settings or the tray.** Run the [Windows Navigation Fix](#windows-navigation-fix).
+**Windows' own controller navigation fights with FullTilt in Start, Quick Settings or the tray.** Run the [Step 1 fix](#step-1-windows-controller-fix).
 
-**Windows warns about the app.** The executable isn't code-signed, so SmartScreen may show a reputation prompt. Compare the ZIP against `SHA256SUMS.txt` from the release page if you want to verify it.
+**Windows warns about the app.** The executable isn't code-signed, so SmartScreen may show a reputation prompt. Choose **More info → Run anyway**, or compare the ZIP with `SHA256SUMS.txt` on the release page first.
 
 **The app won't start.** The bundled .NET runtime unpacks native files into your user temp folder, which must be writable. Extract FullTilt to a normal folder rather than running it from inside the ZIP.
 
@@ -95,11 +95,11 @@ Movement defaults: normal cursor **600 px/s**, precision **200 px/s**, boosted *
 
 Still stuck? [Open an issue](https://github.com/adityabhanushali-arch/FullTilt/issues/new/choose) with your FullTilt and Windows versions, controller model and steps to reproduce. Remove personal details from screenshots and logs.
 
-## Windows Navigation Fix
+## Step 1: Windows controller fix
 
-Windows has its own controller-to-keyboard navigation for Start, Quick Settings, notifications and the tray, which competes with FullTilt's cursor control. The release ZIP includes a **`Windows-Navigation-Fix`** folder (beside `FullTilt.exe`) with two scripts: `Apply-FullTilt-Navigation-Fix.ps1` switches Windows' feature off, and `Undo-FullTilt-Navigation-Fix.ps1` restores it. FullTilt never runs them for you.
+**The problem:** Windows has its own controller navigation for Start, Quick Settings, notifications and the tray. It reacts to the same controller FullTilt uses, so the two get in each other's way.
 
-Run them from a PowerShell window opened **as Administrator**; the exact commands are in the [README](../README.md#important-switch-off-windows-own-controller-navigation). The fix changes one machine-wide registry value and affects every user on the PC. Results vary by Windows build. Read the [tool's README](../tools/Windows-Navigation-Fix/README.md) for what it saves and how undoing works.
+**The fix:** the download includes a `Step-1-Windows-Controller-Fix` folder beside `FullTilt.exe`. `Turn-Off-Windows-Controller-Navigation.ps1` turns Windows' feature off; `Turn-On-Windows-Controller-Navigation.ps1` turns it back on exactly as it was. Run them from PowerShell opened **as administrator**; the step-by-step commands are in the [README](../README.md#2-run-step-1-the-windows-controller-fix-once) and in the folder's [README.txt](../tools/Step-1-Windows-Controller-Fix/README.txt). FullTilt never runs them by itself.
 
 ## Limits worth knowing
 

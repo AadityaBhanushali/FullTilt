@@ -12,7 +12,7 @@ Include the FullTilt version, Windows version, what you observed and, if possibl
 
 ## What is in scope
 
-FullTilt sends synthetic mouse and keyboard input, runs a low-level keyboard hook only while its shortcut recorder is open, reads and writes files in its own `Profiles` folder, and makes anonymous requests to GitHub's public releases API for update checks. It has no accounts, telemetry or server component. Reports about those areas, the release pipeline, or the `Windows-Navigation-Fix` scripts are welcome.
+FullTilt sends synthetic mouse and keyboard input, runs a low-level keyboard hook only while its shortcut recorder is open, reads and writes files in its own `Profiles` folder, and makes anonymous requests to GitHub's public releases API for update checks. It has no accounts, telemetry or server component. Reports about those areas, the release pipeline, or the `Step-1-Windows-Controller-Fix` scripts are welcome.
 
 ## Verifying downloads
 

@@ -15,7 +15,9 @@ Built for couch navigation, and as a gentler alternative to the mouse.
 [![License: MIT](https://img.shields.io/badge/license-MIT-C8F35B?labelColor=18251B)](LICENSE)
 ![Windows 11 x64](https://img.shields.io/badge/Windows%2011-x64-C8F35B?labelColor=18251B)
 
-**[⬇ Download for Windows](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** &nbsp;·&nbsp; [User guide](docs/USER-GUIDE.md) &nbsp;·&nbsp; [Changelog](CHANGELOG.md)
+**[⬇ Download for Windows](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** &nbsp;·&nbsp; [How to install](#get-started) &nbsp;·&nbsp; [User guide](docs/USER-GUIDE.md)
+
+<sub>First time? Run <b>Step 1</b> in the download before opening FullTilt. <a href="#get-started">See how</a>.</sub>
 
 <br>
 
@@ -91,7 +93,7 @@ Hold a button, aim with the stick, release to run the highlighted action. FullTi
 | **Pie menus** | Build as many menus as you like, each with 2 to 8 segments, its own D-pad overrides and a controller button of your choice to open it. One global size setting scales them all. |
 | **Profiles** | Save and switch whole configurations. Settings are portable: they live in a `Profiles` folder next to `FullTilt.exe`. |
 | **Safe by design** | A pause shortcut (default: **D-pad Up + B + Y**), a **Release held inputs** panic button, and neutral-stick re-arming after pauses or disconnects so nothing gets stuck. |
-| **Windows navigation fix** | A bundled tool turns off Windows' built-in controller navigation so it stops competing with FullTilt, and undoes it on request. |
+| **Windows controller fix** | The bundled Step 1 scripts turn off Windows' own controller navigation so it stops competing with FullTilt, and turn it back on when you want. |
 | **Touch keyboard** | Show and hide the Windows touch keyboard from a controller button. |
 | **Quiet in the tray** | Closing the window keeps FullTilt running in the tray; an optional on-screen indicator shows when it is paused. |
 | **Updates you control** | Optional GitHub release checks. FullTilt never downloads or replaces itself. |
@@ -123,35 +125,48 @@ Hold a button, aim with the stick, release to run the highlighted action. FullTi
 
 ## Get started
 
-1. **[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** from the latest release. Use that file, not GitHub's "Source code" archive.
-2. **Extract the whole folder** somewhere you can write to, such as `Documents\FullTilt`. Don't run it from inside the ZIP.
-3. **Connect your controller**, leave the sticks centered, then run **`FullTilt.exe`**.
-4. **Switch off Windows' own controller navigation** with the included Windows Navigation Fix ([next section](#important-switch-off-windows-own-controller-navigation)). Skip this only if Windows never reacts to your controller outside FullTilt.
+**The download contains:**
 
-The .NET runtime is included, and the defaults below work immediately.
+```
+FullTilt/
+├─ FullTilt.exe                    the app
+├─ Step-1-Windows-Controller-Fix/  run this once, first
+└─ Licenses/                       legal text, nothing to do here
+```
 
-> Windows may show a reputation prompt because the executable is not code-signed. Each release lists a SHA-256 checksum (`SHA256SUMS.txt`) so you can verify the download. Start with `FullTilt.exe --paused` to launch with controller output paused.
+### 1. Download and extract
 
-### Important: switch off Windows' own controller navigation
+1. **[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)**. Use that file, not GitHub's "Source code" archive.
+2. **Right-click the ZIP → Extract All**, and put the folder somewhere you'll keep it, such as `Documents\FullTilt`.
 
-Windows has a built-in controller navigation of its own. While it is on, your controller can also move focus around **Start, Quick Settings, notifications and the tray**, and it fights with FullTilt's cursor control. The download includes a small tool that turns that Windows feature off, and another that puts it back.
+### 2. Run Step 1: the Windows controller fix (once)
 
-1. Open **Windows Terminal** or **PowerShell as Administrator**.
-2. Go to the **`Windows-Navigation-Fix`** folder that came in the ZIP beside `FullTilt.exe`:
+**The problem:** Windows has its own controller navigation built in. With a controller connected, Windows uses it to move around Start, Quick Settings and notifications, while FullTilt uses it to move your mouse. Both react at once and get in each other's way.
+
+**The fix:** the `Step-1-Windows-Controller-Fix` folder turns Windows' controller navigation off, so only FullTilt responds. Your original setting is saved first, and you can turn it back on at any time.
+
+1. Open the Start menu, type **PowerShell**, right-click it and choose **Run as administrator**.
+2. Go to the Step 1 folder (change the path to where you extracted FullTilt):
 
    ```powershell
-   cd "C:\Path\To\FullTilt\Windows-Navigation-Fix"
+   cd "C:\Path\To\FullTilt\Step-1-Windows-Controller-Fix"
    ```
 
-3. Run the fix:
+3. Run:
 
    ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Apply-FullTilt-Navigation-Fix.ps1
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Turn-Off-Windows-Controller-Navigation.ps1
    ```
 
-4. Restart Windows if the change doesn't take effect right away.
+4. You'll see **"Done"**. If Windows still reacts to the controller, restart your PC.
 
-To go back to Windows' default behavior at any time, run `Undo-FullTilt-Navigation-Fix.ps1` the same way. The tool changes a single machine-wide registry value, needs administrator rights, saves your original setting first and downloads nothing. FullTilt never runs it on its own. [Details and safety notes](tools/Windows-Navigation-Fix/README.md).
+To undo it, run `Turn-On-Windows-Controller-Navigation.ps1` the same way. More detail is in the folder's [README](tools/Step-1-Windows-Controller-Fix/README.txt).
+
+### 3. Start FullTilt
+
+Connect your controller, leave the sticks centered and open **`FullTilt.exe`**. That's it: nothing else to install, and the controls below work straight away. FullTilt creates a `Profiles` folder next to itself to save your settings.
+
+> Windows may warn you about the app because it isn't code-signed yet. Choose **More info → Run anyway**. Want to check the download? Compare it with `SHA256SUMS.txt` on the release page.
 
 ### Default controls
 
@@ -175,7 +190,7 @@ To use a pie menu, hold its button, point the cursor stick at a segment, then re
 
 - Windows 11 x64 (build 22000 or later)
 - An **XInput** controller, for example an Xbox controller or any pad that presents as one. Other controllers need an external XInput mapping tool; FullTilt does not bundle one.
-- A writable folder. No administrator rights, installer, account or internet connection is required; the internet is only used for optional update checks.
+- A writable folder. No installer, account or internet connection is needed; the internet is only used for optional update checks. Administrator rights are needed only once, for the Step 1 fix.
 
 ## Privacy and safety
 
