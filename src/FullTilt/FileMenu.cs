@@ -24,7 +24,9 @@ internal static class FileMenu
             popup.IsOpen = false; button.Focus();
             if (action is not null) window.Dispatcher.BeginInvoke(action);
         }
-        foreach (var (label, glyph, command) in new[] { ("Check for Updates", "\uE895", "updates"), ("Report a Problem", "\uE90A", "issues"), ("About FullTilt", "\uE946", "about"), ("Exit FullTilt", "\uE8BB", "exit") })
+        var rowsByCommand = new System.Collections.Generic.Dictionary<string, Button>();
+        var tourMode = false;
+        foreach (var (label, glyph, command) in new[] { ("Take the tour", "", "tour"), ("Check for Updates", "\uE895", "updates"), ("Report a Problem", "\uE90A", "issues"), ("About FullTilt", "\uE946", "about"), ("Exit FullTilt", "\uE8BB", "exit") })
         {
             if (command == "exit") rows.Children.Add(new Separator { Margin = new Thickness(6, 4, 6, 4) });
             var content = new StackPanel { Orientation = Orientation.Horizontal, Width = 202 };
@@ -32,7 +34,7 @@ internal static class FileMenu
             icon.SetResourceReference(TextBlock.ForegroundProperty, "Muted"); content.Children.Add(icon); content.Children.Add(new TextBlock { Text = label });
             var row = new Button { Content = content, HorizontalContentAlignment = HorizontalAlignment.Left, Padding = new Thickness(10, 9, 10, 9), Margin = new Thickness(0, 2, 0, 2), BorderThickness = new Thickness(0) };
             row.SetResourceReference(Control.BackgroundProperty, "ThemeFCFDFB"); AutomationProperties.SetName(row, label);
-            row.Click += (_, _) => Dismiss(() => window.InvokeFileAction(command)); rows.Children.Add(row);
+            row.Click += (_, _) => Dismiss(() => window.InvokeFileAction(command)); rows.Children.Add(row); rowsByCommand[command] = row;
         }
         popup.Opened += (_, _) =>
         {
@@ -41,10 +43,27 @@ internal static class FileMenu
                 var move = new TranslateTransform(); frame.RenderTransform = move;
                 move.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation(-4, 0, TimeSpan.FromMilliseconds(150)) { EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut } });
             }
-            rows.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            if (!tourMode) rows.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         };
         void Open() { popup.PopupAnimation = UiMotion.Enabled ? PopupAnimation.Fade : PopupAnimation.None; popup.IsOpen = true; }
         button.Click += (_, _) => { if (popup.IsOpen) Dismiss(); else Open(); };
+        // Tour hook: hold the menu open (it stays out of the dim) with the tour row outlined, then put everything back.
+        window.ShowFileMenuForTour = open =>
+        {
+            tourMode = open; popup.StaysOpen = open;
+            foreach (var (command, row) in rowsByCommand)
+            {
+                row.BorderThickness = new Thickness(command == "tour" && open ? 2 : 0);
+                if (command == "tour" && open) row.BorderBrush = new SolidColorBrush(Color.FromRgb(200, 243, 91));
+            }
+            if (open) Open(); else popup.IsOpen = false;
+        };
+        window.FileMenuBounds = root =>
+        {
+            frame.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            var origin = button.TransformToVisual(root).Transform(new Point(0, button.ActualHeight + 4));
+            return new Rect(origin, frame.DesiredSize);
+        };
         popup.PreviewKeyDown += (_, e) =>
         {
             if (e.Key == Key.Escape) { e.Handled = true; Dismiss(); }

@@ -12,7 +12,26 @@ public partial class MainWindow : Window
     public bool AllowClose { get; set; }
     public event Action? HiddenToTray;
     internal event Action<string>? FileAction;
-    internal void InvokeFileAction(string command) => FileAction?.Invoke(command);
+    internal void InvokeFileAction(string command) { if (command == "tour") StartTour(); else FileAction?.Invoke(command); }
+    internal Action<bool>? ShowFileMenuForTour { get; set; }
+    internal Func<System.Windows.Media.Visual, Rect>? FileMenuBounds { get; set; }
+    private OnboardingTour? _tour;
+    private AppPreferencesViewModel? _tourPreferences;
+    internal bool TourActive => _tour is { IsOpen: true };
+    internal OnboardingTour? Tour => _tour;
+    internal void StartTour()
+    {
+        if (TourActive || !IsVisible || WindowState == WindowState.Minimized || System.Windows.Documents.AdornerLayer.GetAdornerLayer((UIElement)Content) is not { } layer) return;
+        if (!TryResolvePieDraft()) return;
+        _model.StopShortcutRecording();
+        var tour = _tour = new OnboardingTour(this, _model, completed => { if (completed) _tourPreferences?.CompleteOnboarding(); });
+        tour.Start(layer);
+    }
+    private void TryAutoTour()
+    {
+        if (_tourPreferences?.OnboardingPending == true && !TourActive && IsVisible && WindowState != WindowState.Minimized)
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => { if (_tourPreferences.OnboardingPending) StartTour(); }));
+    }
     public MainWindow(SettingsViewModel model, AppPreferencesViewModel? preferences = null)
     {
         InitializeComponent();
@@ -22,6 +41,8 @@ public partial class MainWindow : Window
         DataContext = _model = model;
         SettingsPage.SizeChanged += (_, _) => SettingsSubtitle.Visibility = SettingsPage.ActualHeight < 550 ? Visibility.Collapsed : Visibility.Visible;
         preferences ??= new AppPreferencesViewModel();
+        _tourPreferences = preferences;
+        ContentRendered += (_, _) => TryAutoTour();
         AppPreferencesHost.DataContext = ThemePicker.DataContext = AppVersionText.DataContext = PreferencesPath.DataContext = preferences;
         var movement = new MovementEditor(model, (Style)FindResource("SettingsSwitch"));
         MovementSections.Content = movement;
@@ -97,6 +118,7 @@ public partial class MainWindow : Window
     {
         Show();
         if (WindowState == WindowState.Minimized) WindowState = _lastVisibleState;
+        TryAutoTour();
     }
     private bool _profileChanging;
     public Func<string?>? RequestProfileName { get; set; }

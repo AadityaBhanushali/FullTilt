@@ -45,7 +45,7 @@ internal sealed class LaunchFeatures : IDisposable
     }
     private void TryNotify()
     {
-        if (_disposed || _dialogOpen || !_owner.IsVisible || !_owner.IsActive || _owner.WindowState == WindowState.Minimized || _owner.OwnedWindows.Count != 0) return;
+        if (_disposed || _dialogOpen || _owner.TourActive || !_owner.IsVisible || !_owner.IsActive || _owner.WindowState == WindowState.Minimized || _owner.OwnedWindows.Count != 0) return;
         if (_pending is not { } result || !ReleaseVersions.ShouldNotify(result, AppPreferencesViewModel.ApplicationVersion, _preferences.AutomaticallyCheckForUpdates, _sessionAcknowledged ?? _preferences.AcknowledgedRelease)) return;
         var release = result.Release!;
         Show(LaunchDialog.Automatic(release, _preferences, Open)); Acknowledge(release); _pending = null;

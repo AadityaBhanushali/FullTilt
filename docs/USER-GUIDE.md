@@ -46,7 +46,7 @@ A new pie menu starts with four empty segments and no opening button. Assign a b
 Your profiles, keybindings, pie menus and movement settings are stored in **`Profiles/settings.json`** next to `FullTilt.exe`. Theme, window mode and update preferences are in **`Profiles/app-preferences.json`**. To move FullTilt to another folder or PC, copy the whole `Profiles` folder along with it.
 
 - Use the profile bar at the top of the window to Save, Rename, Delete or create a **New** profile.
-- **Start with Windows** is opt-in and belongs to your Windows account. If you move the executable, switch it off and on again from the new location.
+- **Start with Windows** is on for new installs and belongs to your Windows account. Turn it off in **Settings → General**. If you move the executable, switch it off and on again from the new location.
 - Never run two copies of FullTilt against the same `Profiles` folder.
 
 ## Updating and rolling back
@@ -69,7 +69,7 @@ A fresh install, and **Reset current profile**, use this configuration.
 | --- | --- |
 | Left stick / right stick | Cursor / scrolling |
 | A / X / Y | Left / right / middle mouse button, held while pressed |
-| B | Caps Lock, held until released |
+| B | Escape |
 | D-pad | Arrow keys |
 | LT | Speed Boost while held |
 | LB / RB | Media / Editing pie menu |

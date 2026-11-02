@@ -26,7 +26,7 @@ foreach ($file in Get-ChildItem -LiteralPath (Join-Path $app 'Step-1-Windows-Con
 $exe = Join-Path $app 'FullTilt.exe'
 if ([Diagnostics.FileVersionInfo]::GetVersionInfo($exe).FileVersion -ne "$ExpectedVersion.0") { throw 'Archived executable has the wrong version.' }
 # The ZIP carries no checksum file; compare against the verified published package instead.
-$exeHash = ((Get-Content -LiteralPath (Join-Path $repoRoot "Finals/FullTilt-v$ExpectedVersion-win-x64/SHA256SUMS.txt")) -split ' ')[0]
+$exeHash = ((Get-Content -LiteralPath (Join-Path $repoRoot "Releases/FullTilt-v$ExpectedVersion-win-x64/SHA256SUMS.txt")) -split ' ')[0]
 if ((Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash -ne $exeHash) { throw 'Archived executable checksum mismatch.' }
 # Simulate replacement with isolated profile files. Never read or write live settings here.
 $profiles = Join-Path $app 'Profiles'

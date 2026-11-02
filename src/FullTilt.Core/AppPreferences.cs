@@ -11,6 +11,9 @@ public sealed record AppPreferences
     public bool Maximized { get; init; } = true;
     public bool AutomaticallyCheckForUpdates { get; init; } = true;
     public string? AcknowledgedRelease { get; init; }
+    // Null means the file predates the tour: existing users are not shown it. False marks a fresh install.
+    public bool? OnboardingCompleted { get; init; }
+    public bool StartupDefaultApplied { get; init; }
     [JsonExtensionData] public Dictionary<string, JsonElement>? Additional { get; init; }
 }
 
@@ -31,6 +34,9 @@ public sealed class AppPreferencesStore(string directory)
             var repaired = false;
             if (root.TryGetPropertyValue("AutomaticallyCheckForUpdates", out var automatic) && (automatic is not JsonValue automaticValue || !automaticValue.TryGetValue<bool>(out _)))
             { root.Remove("AutomaticallyCheckForUpdates"); repaired = true; }
+            foreach (var name in new[] { "OnboardingCompleted", "StartupDefaultApplied" })
+                if (root.TryGetPropertyValue(name, out var flag) && flag is not null && (flag is not JsonValue flagValue || !flagValue.TryGetValue<bool>(out _)))
+                { root.Remove(name); repaired = true; }
             if (root.TryGetPropertyValue("AcknowledgedRelease", out var acknowledged) && acknowledged is not null && (acknowledged is not JsonValue acknowledgedValue || !acknowledgedValue.TryGetValue<string>(out _)))
             { root.Remove("AcknowledgedRelease"); repaired = true; }
             if (repaired)

@@ -14,6 +14,18 @@ static class AppPreferencesTests
             var loaded = new AppPreferencesStore(dir.Path).Load(); Check.True(!loaded.Maximized); Check.Equal("Light", loaded.Theme);
             Check.True(store.Save(loaded with { Theme = "System default" }) is null); Check.True(!store.Load().Maximized);
         });
+        suite.Add("Tour and startup flags are optional, round trip and repair without erasing other preferences", () =>
+        {
+            using var dir = new TestDirectory(); var store = new AppPreferencesStore(dir.Path);
+            File.WriteAllText(store.FilePath, "{\"Version\":1,\"Theme\":\"Light\"}");
+            var old = store.Load(); Check.True(old.OnboardingCompleted is null && !old.StartupDefaultApplied && old.Theme == "Light");
+            Check.True(store.Save(old with { OnboardingCompleted = false, StartupDefaultApplied = true }) is null);
+            var saved = new AppPreferencesStore(dir.Path).Load(); Check.True(saved.OnboardingCompleted == false && saved.StartupDefaultApplied);
+            File.WriteAllText(store.FilePath, "{\"Version\":1,\"Theme\":\"Light\",\"OnboardingCompleted\":\"yes\",\"StartupDefaultApplied\":3}");
+            var repaired = new AppPreferencesStore(dir.Path); var result = repaired.Load();
+            Check.True(result.Theme == "Light" && result.OnboardingCompleted is null && !result.StartupDefaultApplied && repaired.Warning is not null);
+            Check.True(Directory.GetFiles(dir.Path, "*.recovered-*.bak").Length == 1);
+        });
         suite.Add("Factory profile returns independent keyboard, movement and pie data for every reset", () =>
         {
             var first = FactoryDefaults.Create(); var second = FactoryDefaults.Create();
@@ -21,12 +33,12 @@ static class AppPreferencesTests
             Check.Equal(10d, first.SpeedBoostMultiplier); Check.Equal(4d, first.ScrollBoostMultiplier); Check.Equal(DPadMode.AssignedActions, first.DPadMode);
             Check.Equal(ControllerButtons.DPadUp | ControllerButtons.B | ControllerButtons.Y, first.PauseShortcut);
             Check.Equal(InputAction.None, first.Mappings[Control.R3]); Check.Equal(InputAction.SpeedBoostHold, first.Mappings[Control.LT]);
-            Check.Equal(20, first.RecordedBindings[Control.B].Keys[0].VirtualKey); Check.Equal(5, first.PieMenus.Count);
+            Check.Equal(InputAction.Escape, first.Mappings[Control.B]); Check.True(first.RecordedBindings.Count == 0 && first.ShowStateIndicator); Check.Equal(5, first.PieMenus.Count);
             Check.True(first.Profiles is null && first.ActiveProfileId is null && !first.TrayHintShown);
             first.PieMenus[0].Slots[0] = InputAction.Copy; first.PieMenus[0].DPadActions[0] = InputAction.None;
-            first.RecordedBindings[Control.B].Keys[0] = new(65); first.Mappings[Control.R3] = InputAction.Copy;
+            first.Mappings[Control.B] = InputAction.Copy; first.Mappings[Control.R3] = InputAction.Copy;
             Check.Equal(InputAction.PlayPause, second.PieMenus[0].Slots[0]); Check.Equal(InputAction.VolumeUp, second.PieMenus[0].DPadActions[0]!.Value);
-            Check.Equal(20, second.RecordedBindings[Control.B].Keys[0].VirtualKey); Check.Equal(InputAction.None, FactoryDefaults.Create().Mappings[Control.R3]);
+            Check.Equal(InputAction.Escape, second.Mappings[Control.B]); Check.Equal(InputAction.None, FactoryDefaults.Create().Mappings[Control.R3]);
             var keyboard = second.PieMenus[4]; var draft = new PieDraft(keyboard.Assign(0, InputAction.Copy), second); draft.Restore();
             Check.True(draft.Menu.Slots.SequenceEqual(keyboard.Slots)); Check.Equal(keyboard.Id, draft.Menu.Id);
         });

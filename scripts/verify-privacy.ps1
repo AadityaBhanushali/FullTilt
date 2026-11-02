@@ -9,7 +9,7 @@ foreach ($file in $files) {
         # Permit those emails only after byte-for-byte comparison with the restored pack.
         $packName = $file.Directory.Name
         $version = Get-FullTiltVersion
-        $packs = Get-Content -LiteralPath (Join-Path $repoRoot "Finals/FullTilt-v$version-win-x64/runtime-packs.json") -Raw | ConvertFrom-Json
+        $packs = Get-Content -LiteralPath (Join-Path $repoRoot "Releases/FullTilt-v$version-win-x64/runtime-packs.json") -Raw | ConvertFrom-Json
         $pack = @($packs | Where-Object Name -eq $packName)
         if ($pack.Count -ne 1) { throw 'Unrecognized runtime notice source.' }
         $original = Join-Path $env:NUGET_PACKAGES ($packName + '/' + $pack[0].Version + '/THIRD-PARTY-NOTICES.TXT')

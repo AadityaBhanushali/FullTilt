@@ -9,7 +9,7 @@ if (-not $PackageOnly) {
     & "$PSScriptRoot/publish.ps1" -SkipBuild
     & "$PSScriptRoot/verify-package.ps1"
 }
-$package = Join-Path $repoRoot "Finals/FullTilt-v$version-win-x64"
+$package = Join-Path $repoRoot "Releases/FullTilt-v$version-win-x64"
 $exe = Join-Path $package 'FullTilt.exe'
 $proof = Get-Content -LiteralPath (Join-Path $package 'verification.json') -Raw | ConvertFrom-Json
 $exeHash = (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -22,7 +22,7 @@ $staging = Join-Path $output 'FullTilt'
 $zip = Join-Path $output 'FullTilt-win-x64.zip'
 if (Test-Path -LiteralPath $zip) { throw 'Refusing to replace an existing release ZIP. Select a new output directory.' }
 New-Item -ItemType Directory -Path $staging -Force | Out-Null
-# Explicit allowlist: never recurse over Finals, which can contain personal Profiles.
+# Explicit allowlist: never recurse over Releases, which can contain personal Profiles.
 # Users get only the app, the Step 1 fix and the licenses the bundled runtime requires.
 Copy-Item -LiteralPath (Join-Path $package 'FullTilt.exe') -Destination $staging
 $licenses = Join-Path $staging 'Licenses'

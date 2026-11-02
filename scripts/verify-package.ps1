@@ -1,6 +1,6 @@
 . "$PSScriptRoot/env.ps1"
 $version = Get-FullTiltVersion
-$executable = Join-Path $repoRoot "Finals/FullTilt-v$version-win-x64/FullTilt.exe"
+$executable = Join-Path $repoRoot "Releases/FullTilt-v$version-win-x64/FullTilt.exe"
 $output = Join-Path $repoRoot ('artifacts/package-diagnostics/' + $version + '/' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
 if (-not (Test-Path -LiteralPath $executable)) { throw 'Publish FullTilt first.' }
 # Only this explicit diagnostic switch is safe for unattended verification.

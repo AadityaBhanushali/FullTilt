@@ -12,14 +12,31 @@ internal static class AppPreferencesDiagnostics
         var startup = new FakeStartup();
         var exe = Path.Combine(output, "FullTilt.exe");
         var model = new AppPreferencesViewModel(store, startup, exe);
-        if (startup.Writes != 0 || model.StartWithWindows || model.Theme != "Dark") throw new InvalidOperationException("Default preferences registered startup.");
+        if (startup.Writes != 1 || !model.StartWithWindows || startup.Command != StartupCommand.ForExecutable(exe) || model.Theme != "Dark" || !model.OnboardingPending)
+            throw new InvalidOperationException("A fresh install must enable startup once and queue the tour.");
         model.Theme = "Light"; model.Theme = "Dark";
         model.StartWithWindows = true;
-        if (startup.Command != StartupCommand.ForExecutable(exe) || !model.StartWithWindows) throw new InvalidOperationException("Startup enable failed.");
+        if (startup.Writes != 1 || startup.Command != StartupCommand.ForExecutable(exe) || !model.StartWithWindows) throw new InvalidOperationException("Startup enable failed.");
         var reopened = new AppPreferencesViewModel(new AppPreferencesStore(Path.Combine(output, "app-preferences")), startup, exe);
         if (!reopened.StartWithWindows || reopened.Theme != "Dark" || startup.Writes != 1) throw new InvalidOperationException("Preferences failed restart or rewrote startup automatically.");
+        if (!reopened.OnboardingPending) throw new InvalidOperationException("The queued tour was lost on restart.");
         reopened.StartWithWindows = false;
         if (startup.Command is not null || reopened.StartWithWindows) throw new InvalidOperationException("Startup disable failed.");
+        var afterDisable = new AppPreferencesViewModel(new AppPreferencesStore(Path.Combine(output, "app-preferences")), startup, exe);
+        if (afterDisable.StartWithWindows || startup.Command is not null || startup.Writes != 2) throw new InvalidOperationException("Disabled startup was re-enabled on a later launch.");
+        if (!afterDisable.CompleteOnboarding() || afterDisable.OnboardingPending || new AppPreferencesViewModel(new AppPreferencesStore(Path.Combine(output, "app-preferences"))).OnboardingPending) throw new InvalidOperationException("Finishing the tour was not remembered.");
+        var oldCopy = new FakeStartup { Command = "\"C:/Old/FullTilt.exe\" --startup" };
+        var repointed = new AppPreferencesViewModel(new AppPreferencesStore(Path.Combine(output, "repoint-app-preferences")), oldCopy, exe);
+        if (!repointed.StartWithWindows || oldCopy.Command != StartupCommand.ForExecutable(exe)) throw new InvalidOperationException("A fresh install must take over an older FullTilt copy's startup entry.");
+        var unrelated = new FakeStartup { Command = "\"C:/Tools/Other.exe\"" };
+        _ = new AppPreferencesViewModel(new AppPreferencesStore(Path.Combine(output, "unrelated-app-preferences")), unrelated, exe);
+        if (unrelated.Writes != 0 || unrelated.Command != "\"C:/Tools/Other.exe\"") throw new InvalidOperationException("A fresh install changed an unrelated startup entry.");
+        var existingDirectory = Path.Combine(output, "existing-app-preferences"); Directory.CreateDirectory(existingDirectory);
+        File.WriteAllText(Path.Combine(existingDirectory, "app-preferences.json"), "{\"Version\":1,\"Theme\":\"Light\"}");
+        var existingBytes = File.ReadAllBytes(Path.Combine(existingDirectory, "app-preferences.json")); var existingStartup = new FakeStartup();
+        var existing = new AppPreferencesViewModel(new AppPreferencesStore(existingDirectory), existingStartup, exe);
+        if (existingStartup.Writes != 0 || existing.StartWithWindows || existing.OnboardingPending || !System.Linq.Enumerable.SequenceEqual(existingBytes, File.ReadAllBytes(Path.Combine(existingDirectory, "app-preferences.json"))))
+            throw new InvalidOperationException("An existing install must not get startup or the tour, and its file must not be rewritten.");
         startup.Fail = true; reopened.StartWithWindows = true;
         if (reopened.StartWithWindows || reopened.Error is null) throw new InvalidOperationException("Failed startup write reported success.");
         startup.Fail = false; model.StartWithWindows = false;

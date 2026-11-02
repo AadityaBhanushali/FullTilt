@@ -120,7 +120,8 @@ A profile stores a complete setup: button assignments, pie menus and movement se
 | **Safe by design** | A pause shortcut (default: **D-pad Up + B + Y**), a **Release held inputs** panic button, and neutral-stick re-arming after pauses or disconnects so nothing gets stuck. |
 | **Windows controller fix** | Two double-click files in the download turn Windows' own controller navigation off so it stops competing with FullTilt, and back on whenever you want. |
 | **Touch keyboard** | Show and hide the Windows touch keyboard from a controller button. |
-| **Quiet in the tray** | Closing the window keeps FullTilt running in the tray; an optional on-screen indicator shows when it is paused. |
+| **Guided tour** | A short tour on first launch shows the essentials. Replay it any time from **File → Take the tour**. |
+| **Quiet in the tray** | Starts with Windows and closing the window keeps FullTilt running in the tray; an on-screen indicator shows when it is paused. |
 | **Updates you control** | Optional GitHub release checks. FullTilt never downloads or replaces itself. |
 
 <table>
@@ -157,7 +158,7 @@ A profile stores a complete setup: button assignments, pie menus and movement se
 | **Left stick** | Move the cursor |
 | **Right stick** | Scroll |
 | **A / X / Y** | Left / right / middle mouse button |
-| **B** | Caps Lock (held while pressed) |
+| **B** | Escape |
 | **D-pad** | Arrow keys |
 | **LT** (hold) | Speed Boost |
 | **LB** (hold) | Media pie menu |

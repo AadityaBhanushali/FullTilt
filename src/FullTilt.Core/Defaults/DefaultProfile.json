@@ -25,7 +25,7 @@
     "A": "LeftClick",
     "X": "RightClick",
     "Y": "MiddleClick",
-    "B": "None",
+    "B": "Escape",
     "LB": "None",
     "RB": "None",
     "LT": "SpeedBoostHold",
@@ -37,18 +37,7 @@
     "DPadLeft": "ArrowLeft",
     "DPadRight": "ArrowRight"
   },
-  "RecordedBindings": {
-    "B": {
-      "Keys": [
-        {
-          "VirtualKey": 20,
-          "ScanCode": 58,
-          "Extended": false,
-          "Name": "Caps Lock"
-        }
-      ]
-    }
-  },
+  "RecordedBindings": {},
   "PieMenus": [
     {
       "Id": "098db238-091f-4507-bbb5-54447e9c7ec9",

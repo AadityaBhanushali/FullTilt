@@ -2,6 +2,23 @@
 
 Public releases use semantic versions matching the application metadata and `vMAJOR.MINOR.PATCH` tags. Earlier 4.x labels were development builds, not public releases.
 
+## [1.1.0] - 2026-11-02
+
+A guided tour for new users, and FullTilt now starts with Windows by default.
+
+- **Welcome tour.** On first launch FullTilt walks you through eleven short steps: moving and clicking, speed boost, assigning actions, saving changes, movement speeds, pie menus, per-menu D-pad actions, the pause shortcut and profiles. Everything outside the highlighted area is dimmed, and the tour never changes your settings. Skip it any time, and replay it from **File → Take the tour**.
+- **Pause before playing a game.** The tour shows your pause shortcut and explains why to pause FullTilt while you play a game that uses a controller.
+- **Starts with Windows.** New installs start FullTilt in the system tray when you sign in. Turn it off in **Settings → General**. Existing installs keep their current choice.
+- **New defaults.** **B** now presses Escape (it was Caps Lock), and the on-screen state indicator is on.
+
+### How to install
+
+1. Download **FullTilt-win-x64.zip** below and extract it (right-click → Extract All).
+2. **Step 1:** in `Step-1-Windows-Controller-Fix`, double-click `Disable_Windows_Controller_UI_Navigation.reg` and choose Yes. Undo any time with `Restore_Windows_Default_Controller_Navigation.reg`.
+3. **Step 2:** open **FullTilt.exe**.
+
+**Updating:** exit FullTilt, then extract the new files over your old folder. Your `Profiles` folder and settings are kept.
+
 ## [1.0.3] - 2026-11-02
 
 FullTilt's GitHub address has moved to **github.com/AadityaBhanushali/FullTilt**. The app itself is unchanged.

@@ -15,6 +15,7 @@ internal static class LaunchDiagnostics
     {
         var directory = Path.Combine(output, "launch-isolated");
         var preferences = new AppPreferencesViewModel(new AppPreferencesStore(directory));
+        preferences.CompleteOnboarding(); // These checks cover dialogs, not the first-run tour.
         using var model = new SettingsViewModel(new(), new SettingsStore(directory), null, null);
         var owner = new MainWindow(model, preferences) { AllowClose = true };
         using var features = new LaunchFeatures(owner, preferences, _ => { }); // Never Start: no timers or network.

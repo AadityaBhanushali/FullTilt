@@ -26,6 +26,8 @@ public sealed class AppPreferencesViewModel : INotifyPropertyChanged
         get => _preferences.AutomaticallyCheckForUpdates;
         set { SaveUpdatePreferences(_preferences with { AutomaticallyCheckForUpdates = value }); }
     }
+    public bool OnboardingPending => _preferences.OnboardingCompleted == false;
+    public bool CompleteOnboarding() => !OnboardingPending || SaveUpdatePreferences(_preferences with { OnboardingCompleted = true });
     public bool AcknowledgeRelease(string tag) => SaveUpdatePreferences(_preferences with { AcknowledgedRelease = tag });
     private bool SaveUpdatePreferences(AppPreferences next)
     {
@@ -41,12 +43,30 @@ public sealed class AppPreferencesViewModel : INotifyPropertyChanged
     public AppPreferencesViewModel(AppPreferencesStore? store = null, IStartupRegistration? startup = null, string? executable = null, Func<bool>? systemIsDark = null)
     {
         _systemIsDark = systemIsDark ?? (() => false);
+        var firstRun = store is not null && !File.Exists(store.FilePath);
         _store = store; _startup = startup; _preferences = store?.Load() ?? new(); Error = store?.Warning;
         StoragePath = store is null ? "Isolated diagnostic settings" : Path.GetDirectoryName(store.FilePath)!;
         _command = executable is null ? "" : StartupCommand.ForExecutable(executable);
         if (startup is not null)
             try { var registered = startup.Read(); _startWithWindows = registered == _command; if (registered is not null && !_startWithWindows) StartupDescription = "Another FullTilt copy is registered. Enable here to use this copy at sign-in."; }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SecurityException) { Error = "Cannot read Windows startup registration. " + ex.Message; }
+        if (firstRun) ApplyFirstRunDefaults();
+    }
+    // A fresh install starts with Windows and shows the tour once. An older FullTilt copy's registration is re-pointed here; unrelated programs are left alone. Existing preference files are never changed.
+    private void ApplyFirstRunDefaults()
+    {
+        var applied = false;
+        if (_startup is not null && _command.Length > 0)
+            try
+            {
+                if (_startup.Read() is not { } existing || existing.Contains("FullTilt.exe", StringComparison.OrdinalIgnoreCase)) { _startup.Write(_command); applied = _startup.Read() == _command; }
+                _startWithWindows = _startup.Read() == _command;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SecurityException) { Error = "Could not enable Windows startup by default. " + ex.Message; }
+        var next = _preferences with { OnboardingCompleted = false, StartupDefaultApplied = applied };
+        var error = _store?.Save(next);
+        _preferences = next; // The tour still runs once if saving fails.
+        Error ??= error;
     }
     public bool Maximized
     {

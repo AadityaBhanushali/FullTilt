@@ -195,6 +195,8 @@ public partial class App : Application
             ThemedDialog.RejectDiagnosticPrompts = true;
             File.WriteAllText(Path.Combine(output, "public-launch.txt"), PublicLaunchDiagnostics.Verify(output));
             if (args.Contains("--public-launch-only")) { Shutdown(0); return; }
+            File.WriteAllText(Path.Combine(output, "onboarding-tour.txt"), TourDiagnostics.Verify(output));
+            if (args.Contains("--tour-only")) { Shutdown(0); return; }
             File.WriteAllText(Path.Combine(output, "launch-features.txt"), LaunchDiagnostics.Verify(output));
             if (args.Contains("--launch-only")) { Shutdown(0); return; }
             File.WriteAllText(Path.Combine(output, "independent-actions.txt"), IndependentActionsDiagnostics.Verify(output));

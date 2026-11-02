@@ -3,6 +3,8 @@
 **/obj/
 artifacts/
 Finals/
+Releases/*
+!Releases/README.md
 .build/
 publish/
 TestResults/

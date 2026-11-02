@@ -2,7 +2,7 @@ param([switch]$SkipBuild)
 . "$PSScriptRoot/env.ps1"
 if (-not $SkipBuild) { & "$PSScriptRoot/build.ps1" }
 $version = Get-FullTiltVersion
-$destination = Join-Path $repoRoot "Finals/FullTilt-v$version-win-x64"
+$destination = Join-Path $repoRoot "Releases/FullTilt-v$version-win-x64"
 $publicationId = (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '-' + [Guid]::NewGuid().ToString('N').Substring(0, 8)
 $staging = Join-Path $repoRoot ('artifacts/publish/' + $version + '/' + $publicationId)
 dotnet publish src/FullTilt/FullTilt.csproj -c Release -r win-x64 --self-contained true -m:1 -nr:false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=false -p:DebugType=none -p:DebugSymbols=false -p:RestoreConfigFile="$repoRoot/NuGet.Config" -o $staging
@@ -16,7 +16,7 @@ if ($runtimePacks.Count -ne 2) { throw 'Expected .NET and Windows Desktop runtim
 $executable = Join-Path $destination 'FullTilt.exe'
 $stagedExecutable = Join-Path $staging 'FullTilt.exe'
 if (-not (Test-Path -LiteralPath $stagedExecutable)) { throw 'Published executable is missing.' }
-# Reuse one folder for this version. Preserve the entire previous package outside Finals,
+# Reuse one folder for this version. Preserve the entire previous package outside Releases,
 # then replace only the executable atomically; a running/locked copy leaves the old exe intact.
 if (Test-Path -LiteralPath $executable) {
     $backup = Join-Path $repoRoot ('artifacts/package-backups/' + $version + '/' + $publicationId)

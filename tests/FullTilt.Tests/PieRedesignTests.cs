@@ -83,7 +83,7 @@ static class PieRedesignTests
             using var dir = new TestDirectory(); var store = new SettingsStore(dir.Path); var settings = store.Load().Settings;
             var baseline = FactoryDefaults.Create();
             Check.Equal(5, settings.PieMenus.Count); Check.Equal(1, settings.PiePresetMigration);
-            Check.Equal(InputAction.LeftClick, settings.Mappings[Control.A]); Check.Equal("Caps Lock", settings.RecordedBindings[Control.B].Label);
+            Check.Equal(InputAction.LeftClick, settings.Mappings[Control.A]); Check.Equal(InputAction.Escape, settings.Mappings[Control.B]);
             Check.Equal(6, settings.PieMenus[0].SegmentCount); Check.Equal(8, settings.PieMenus[1].SegmentCount);
             Check.Equal(120d, settings.PieMenuSizePercent); Check.Equal(600d, settings.CursorSpeed);
             Check.True(store.Save(settings) is null);
