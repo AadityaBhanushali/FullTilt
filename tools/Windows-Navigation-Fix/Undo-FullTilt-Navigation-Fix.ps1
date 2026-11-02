@@ -1,4 +1,4 @@
 #Requires -Version 5.1
 #Requires -RunAsAdministrator
-. "$PSScriptRoot/ControllerNavigationFix.ps1"
+. "$PSScriptRoot/FullTilt-Navigation-Fix.Common.ps1"
 Invoke-NavigationFix -Mode Restore

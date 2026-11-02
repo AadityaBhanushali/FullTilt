@@ -1,5 +1,5 @@
 # No live registry/file-backup backend is constructed by these tests.
-. "$PSScriptRoot/../FullTilt-Controller-Navigation-Fix/ControllerNavigationFix.ps1"
+. "$PSScriptRoot/../tools/Windows-Navigation-Fix/FullTilt-Navigation-Fix.Common.ps1"
 $cases=@(
     @{Exists=$false;Key=$false;Kind='';Data=$null},
     @{Exists=$false;Key=$true;Kind='';Data=$null},
@@ -45,7 +45,7 @@ foreach($case in $cases){
     if(-not $failed -or $state.Writes -ne $writes){throw 'Foreign backup was accepted.'}
     $passed++
 }
-$files=Get-ChildItem -LiteralPath "$PSScriptRoot/../FullTilt-Controller-Navigation-Fix" -File
+$files=Get-ChildItem -LiteralPath "$PSScriptRoot/../tools/Windows-Navigation-Fix" -File
 foreach($file in $files){
     if($file.Extension -eq '.ps1'){$errors=$null;$null=[System.Management.Automation.Language.Parser]::ParseFile($file.FullName,[ref]$null,[ref]$errors);if($errors.Count){throw "Invalid script syntax: $($file.Name)"}}
     if($file.Extension -eq '.reg'){

@@ -5,12 +5,12 @@ $expectedHash = ((Get-Content -LiteralPath (Join-Path (Split-Path -Parent $Archi
 if ((Get-FileHash -LiteralPath $Archive -Algorithm SHA256).Hash -ne $expectedHash) { throw 'Release archive checksum mismatch.' }
 $archiveFile = [IO.Compression.ZipFile]::OpenRead($Archive)
 try {
-    $allowed = @('FullTilt/FullTilt.exe','FullTilt/SHA256SUMS.txt','FullTilt/README.md','FullTilt/LICENSE','FullTilt/CHANGELOG.md','FullTilt/THIRD-PARTY-NOTICES.md','FullTilt/CONTRIBUTING.md','FullTilt/docs/RELEASING.md','FullTilt/docs/screenshots/keybindings.png','FullTilt/docs/screenshots/movement.png','FullTilt/docs/screenshots/pie-menus.png')
+    $allowed = @('FullTilt/FullTilt.exe','FullTilt/SHA256SUMS.txt','FullTilt/README.md','FullTilt/LICENSE','FullTilt/CHANGELOG.md','FullTilt/THIRD-PARTY-NOTICES.md','FullTilt/CONTRIBUTING.md','FullTilt/docs/USER-GUIDE.md','FullTilt/docs/RELEASING.md','FullTilt/docs/screenshots/keybindings.png','FullTilt/docs/screenshots/movement.png','FullTilt/docs/screenshots/pie-menus.png')
     foreach ($pack in @('microsoft.netcore.app.runtime.win-x64', 'microsoft.windowsdesktop.app.runtime.win-x64')) {
         $allowed += "FullTilt/runtime-notices/$pack/LICENSE.TXT"
         if ($pack -eq 'microsoft.netcore.app.runtime.win-x64' -or $archiveFile.Entries.FullName -contains "FullTilt/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT") { $allowed += "FullTilt/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT" }
     }
-    foreach ($name in @('ControllerNavigationFix.ps1','Disable_Windows_Controller_UI_Navigation.ps1','Restore_Windows_Default_Controller_Navigation.ps1','Disable_Windows_Controller_UI_Navigation.reg','Restore_Windows_Default_Controller_Navigation.reg','README.md','README.txt')) { $allowed += "FullTilt/FullTilt-Controller-Navigation-Fix/$name" }
+    foreach ($name in @('FullTilt-Navigation-Fix.Common.ps1','Apply-FullTilt-Navigation-Fix.ps1','Undo-FullTilt-Navigation-Fix.ps1','README.md')) { $allowed += "FullTilt/Windows-Navigation-Fix/$name" }
     $names = @($archiveFile.Entries | Where-Object { $_.Name.Length -gt 0 } | ForEach-Object { $_.FullName.Replace('\','/') })
     if (@(Compare-Object ($allowed | Sort-Object) ($names | Sort-Object)).Count -ne 0 -or $names.Count -ne $allowed.Count) { throw 'Archive contents differ from the approved allowlist.' }
     $destination = Join-Path $repoRoot ('artifacts/release-verification/' + [Guid]::NewGuid().ToString('N'))
@@ -18,8 +18,8 @@ try {
 }
 finally { $archiveFile.Dispose() }
 $app = Join-Path $destination 'FullTilt'
-foreach ($file in Get-ChildItem -LiteralPath (Join-Path $app 'FullTilt-Controller-Navigation-Fix') -File) {
-    $source=Join-Path $repoRoot ('FullTilt-Controller-Navigation-Fix/'+$file.Name)
+foreach ($file in Get-ChildItem -LiteralPath (Join-Path $app 'Windows-Navigation-Fix') -File) {
+    $source=Join-Path $repoRoot ('tools/Windows-Navigation-Fix/'+$file.Name)
     if ((Get-FileHash -LiteralPath $source).Hash -ne (Get-FileHash -LiteralPath $file.FullName).Hash) { throw 'Archived utility differs from reviewed source.' }
 }
 & "$PSScriptRoot/verify-privacy.ps1" -Path $app -VerifyRuntimeNotices

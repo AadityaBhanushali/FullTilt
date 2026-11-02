@@ -18,6 +18,7 @@ function Assert-NavigationSnapshot($State) {
 function New-NavigationBackend {
     $principal = [Security.Principal.WindowsPrincipal]::new([Security.Principal.WindowsIdentity]::GetCurrent())
     if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { throw 'Open PowerShell as Administrator, then run the matching script.' }
+    # Keep this folder name: it holds backups created by FullTilt 1.0.0, which Undo must still find.
     $folder = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'FullTilt-Controller-Navigation-Fix'
     $backup = Join-Path $folder 'original-state.json'
     $admins = [Security.Principal.SecurityIdentifier]::new('S-1-5-32-544')

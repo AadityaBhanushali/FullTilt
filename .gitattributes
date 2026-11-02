@@ -1,4 +1,4 @@
-FullTilt-Controller-Navigation-Fix/*.ps1 text eol=lf
-FullTilt-Controller-Navigation-Fix/*.md text eol=lf
-FullTilt-Controller-Navigation-Fix/*.txt text eol=lf
-FullTilt-Controller-Navigation-Fix/*.reg -text
+tools/Windows-Navigation-Fix/*.ps1 text eol=lf
+tools/Windows-Navigation-Fix/*.md text eol=lf
+*.png binary
+*.gif binary
