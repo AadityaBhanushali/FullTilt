@@ -2,6 +2,23 @@
 
 Public releases use semantic versions matching the application metadata and `vMAJOR.MINOR.PATCH` tags. Earlier 4.x labels were development builds, not public releases.
 
+## [1.0.2] - 2026-11-01
+
+The Windows controller fix is back to two simple double-click files. The app itself is unchanged.
+
+- `Step-1-Windows-Controller-Fix` now holds the original `Disable_Windows_Controller_UI_Navigation.reg` and `Restore_Windows_Default_Controller_Navigation.reg`, plus a short `README.txt`. No PowerShell or commands needed.
+- If you used the PowerShell fix from 1.0.0 or 1.0.1, the Restore file still returns Windows to its default.
+
+### How to install
+
+1. Download **FullTilt-win-x64.zip** below and extract it (right-click → Extract All).
+2. **Step 1:** in `Step-1-Windows-Controller-Fix`, double-click `Disable_Windows_Controller_UI_Navigation.reg` and choose Yes. Undo any time with `Restore_Windows_Default_Controller_Navigation.reg`.
+3. **Step 2:** open **FullTilt.exe**.
+
+You can also try FullTilt before Step 1; the fix just makes it work more smoothly alongside Windows.
+
+**Updating:** exit FullTilt, then extract the new files over your old folder. Your `Profiles` folder and settings are kept.
+
 ## [1.0.1] - 2026-11-01
 
 A simpler download. The app itself is unchanged.
