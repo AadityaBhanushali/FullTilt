@@ -35,12 +35,11 @@ finally { if (Test-Path -LiteralPath $replacement) { Remove-Item -LiteralPath $r
 Copy-Item -LiteralPath (Join-Path $repoRoot 'README.md') -Destination (Join-Path $destination 'README.md')
 Copy-Item -LiteralPath (Join-Path $repoRoot 'LICENSE'), (Join-Path $repoRoot 'CHANGELOG.md') -Destination $destination
 $runtimePacks | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $destination 'runtime-packs.json') -Encoding utf8
-Copy-Item -LiteralPath (Join-Path $repoRoot 'AGENTS.md') -Destination (Join-Path $destination 'AGENTS.md')
 # Keep user profile data intact when republishing this version.
 New-Item -ItemType Directory -Path (Join-Path $destination 'Profiles') -Force | Out-Null
 $packageDocs = Join-Path $destination 'docs'
 New-Item -ItemType Directory -Path $packageDocs -Force | Out-Null
-Copy-Item -LiteralPath (Join-Path $repoRoot 'docs/PRODUCT.md'), (Join-Path $repoRoot 'docs/STATUS.md') -Destination $packageDocs
+Copy-Item -LiteralPath (Join-Path $repoRoot 'docs/USER-GUIDE.md'), (Join-Path $repoRoot 'docs/RELEASING.md') -Destination $packageDocs
 $hash = Get-FileHash -LiteralPath $executable -Algorithm SHA256
 [System.IO.File]::WriteAllText((Join-Path $destination 'SHA256SUMS.txt'), "$($hash.Hash.ToLowerInvariant())  FullTilt.exe`n")
 Write-Host "Published: $executable"
