@@ -18,7 +18,7 @@ internal static class LaunchDiagnostics
         using var model = new SettingsViewModel(new(), new SettingsStore(directory), null, null);
         var owner = new MainWindow(model, preferences) { AllowClose = true };
         using var features = new LaunchFeatures(owner, preferences, _ => { }); // Never Start: no timers or network.
-        var release = new ReleaseInfo("v1.1.0", new Version(1, 1, 0, 0), "A sample stable release\n\n• Controller improvements\n• Profile compatibility retained", new Uri("https://github.com/adityabhanushali-arch/FullTilt/releases/tag/v1.1.0"));
+        var release = new ReleaseInfo("v1.1.0", new Version(1, 1, 0, 0), "A sample stable release\n\n• Controller improvements\n• Profile compatibility retained", new Uri("https://github.com/AadityaBhanushali/FullTilt/releases/tag/v1.1.0"));
         void Render(LaunchDialog dialog, string name)
         {
             try

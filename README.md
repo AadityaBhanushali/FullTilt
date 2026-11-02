@@ -10,12 +10,12 @@
 Turn your game controller into a fully functional mouse and keyboard for Windows.<br>
 Move your cursor, click, scroll and navigate your desktop, all without reaching for a mouse.
 
-[![Latest release](https://img.shields.io/github/v/release/adityabhanushali-arch/FullTilt?color=C8F35B&labelColor=18251B&label=release)](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)
-[![Build](https://github.com/adityabhanushali-arch/FullTilt/actions/workflows/build.yml/badge.svg)](https://github.com/adityabhanushali-arch/FullTilt/actions/workflows/build.yml)
+[![Latest release](https://img.shields.io/github/v/release/AadityaBhanushali/FullTilt?color=C8F35B&labelColor=18251B&label=release)](https://github.com/AadityaBhanushali/FullTilt/releases/latest)
+[![Build](https://github.com/AadityaBhanushali/FullTilt/actions/workflows/build.yml/badge.svg)](https://github.com/AadityaBhanushali/FullTilt/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-C8F35B?labelColor=18251B)](LICENSE)
 ![Windows 11 x64](https://img.shields.io/badge/Windows%2011-x64-C8F35B?labelColor=18251B)
 
-**[⬇ Download for Windows](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** &nbsp;·&nbsp; [How to install](#get-started) &nbsp;·&nbsp; [User guide](docs/USER-GUIDE.md)
+**[⬇ Download for Windows](https://github.com/AadityaBhanushali/FullTilt/releases/latest)** &nbsp;·&nbsp; [How to install](#get-started) &nbsp;·&nbsp; [User guide](docs/USER-GUIDE.md)
 
 <sub>Download, double-click Step 1, open FullTilt. <a href="#get-started">That's it</a>.</sub>
 
@@ -56,7 +56,7 @@ If holding or using a mouse for long periods is uncomfortable, FullTilt offers a
 
 ## Get started
 
-**[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** and extract it (right-click → **Extract All**). Then:
+**[Download `FullTilt-win-x64.zip`](https://github.com/AadityaBhanushali/FullTilt/releases/latest)** and extract it (right-click → **Extract All**). Then:
 
 **Step 1:** open the `Step-1-Windows-Controller-Fix` folder, double-click **`Disable_Windows_Controller_UI_Navigation.reg`** and choose **Yes**.
 To undo it any time, double-click **`Restore_Windows_Default_Controller_Navigation.reg`** in the same folder.
@@ -191,7 +191,7 @@ The tests use fake controllers and isolated settings: they never emulate real in
 
 ## Contributing and support
 
-Bug reports and focused feature ideas are welcome in [Issues](https://github.com/adityabhanushali-arch/FullTilt/issues/new/choose), or use **File → Report a Problem** inside the app. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+Bug reports and focused feature ideas are welcome in [Issues](https://github.com/AadityaBhanushali/FullTilt/issues/new/choose), or use **File → Report a Problem** inside the app. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## About
 

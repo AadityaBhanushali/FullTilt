@@ -93,7 +93,7 @@ Movement defaults: normal cursor **600 px/s**, precision **200 px/s**, boosted *
 
 **A key or button seems stuck.** Use **Release held inputs** in Settings, or pause and resume.
 
-Still stuck? [Open an issue](https://github.com/adityabhanushali-arch/FullTilt/issues/new/choose) with your FullTilt and Windows versions, controller model and steps to reproduce. Remove personal details from screenshots and logs.
+Still stuck? [Open an issue](https://github.com/AadityaBhanushali/FullTilt/issues/new/choose) with your FullTilt and Windows versions, controller model and steps to reproduce. Remove personal details from screenshots and logs.
 
 ## Step 1: Windows controller fix
 

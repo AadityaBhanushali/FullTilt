@@ -16,7 +16,7 @@ internal static class PublicLaunchDiagnostics
         var expected = typeof(PublicLaunchDiagnostics).Assembly.GetName().Version!.ToString(3);
         if (AppPreferencesViewModel.ReleaseVersion != expected || AppPreferencesViewModel.BuildVersion != expected) throw new InvalidOperationException("Displayed and assembly versions differ.");
         var links = LaunchLinks.Current;
-        if (links.GitHubOwner != "adityabhanushali-arch" || links.GitHubRepository != "FullTilt" || links.Issues?.AbsoluteUri != "https://github.com/adityabhanushali-arch/FullTilt/issues") throw new InvalidOperationException("Public GitHub links are incorrect.");
+        if (links.GitHubOwner != "AadityaBhanushali" || links.GitHubRepository != "FullTilt" || links.Issues?.AbsoluteUri != "https://github.com/AadityaBhanushali/FullTilt/issues") throw new InvalidOperationException("Public GitHub links are incorrect.");
         ThemePalette.Apply(true);
         using var model = new SettingsViewModel(FactoryDefaults.Create(), new SettingsStore(Path.Combine(output, "public-screenshot-settings")), null, null);
         var window = new MainWindow(model, new AppPreferencesViewModel()) { AllowClose = true, ShowActivated = false };

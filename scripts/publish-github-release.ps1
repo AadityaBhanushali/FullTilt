@@ -1,7 +1,7 @@
 param([Parameter(Mandatory)][string]$Tag, [Parameter(Mandatory)][string]$Assets, [switch]$Publish)
 . "$PSScriptRoot/env.ps1"
 & "$PSScriptRoot/validate-release.ps1" -Tag $Tag
-$repository = 'adityabhanushali-arch/FullTilt'
+$repository = 'AadityaBhanushali/FullTilt'
 $Assets = [IO.Path]::GetFullPath($Assets)
 foreach ($file in @('FullTilt-win-x64.zip','SHA256SUMS.txt','RELEASE_NOTES.md')) {
     if (-not (Test-Path -LiteralPath (Join-Path $Assets $file))) { throw "Release asset is missing: $file" }

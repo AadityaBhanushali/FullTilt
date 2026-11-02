@@ -43,7 +43,7 @@ git push origin main vX.Y.Z
 
 Never move or overwrite a published tag or release asset. No personal token is needed: the workflow uses the built-in `GITHUB_TOKEN`, and all third-party Actions are pinned to commit SHAs.
 
-After the workflow finishes, check the release page: the three assets, the notes, and that `https://github.com/adityabhanushali-arch/FullTilt/releases/latest` points at the new version.
+After the workflow finishes, check the release page: the three assets, the notes, and that `https://github.com/AadityaBhanushali/FullTilt/releases/latest` points at the new version.
 
 ## What stays out of releases
 

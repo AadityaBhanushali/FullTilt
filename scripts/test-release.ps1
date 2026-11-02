@@ -32,7 +32,7 @@ try {
     if ($testState.Calls.Count -ne 0) { throw 'Dry run contacted gh.' }; Write-Host 'PASS: default publication plan performs no remote request'
     $env:GITHUB_ACTIONS='false'
     Expect-Failure { & "$PSScriptRoot/publish-github-release.ps1" -Tag "v$version" -Assets $testAssets -Publish } 'publication outside approved CI context rejected'
-    $env:GITHUB_ACTIONS='true'; $env:GITHUB_EVENT_NAME='push'; $env:GITHUB_REPOSITORY='adityabhanushali-arch/FullTilt'; $env:GITHUB_REF="refs/tags/v$version"; $env:GITHUB_SHA='local-test-commit'; $env:GH_TOKEN='local-fake-token'
+    $env:GITHUB_ACTIONS='true'; $env:GITHUB_EVENT_NAME='push'; $env:GITHUB_REPOSITORY='AadityaBhanushali/FullTilt'; $env:GITHUB_REF="refs/tags/v$version"; $env:GITHUB_SHA='local-test-commit'; $env:GH_TOKEN='local-fake-token'
     & "$PSScriptRoot/publish-github-release.ps1" -Tag "v$version" -Assets $testAssets -Publish
     if (($testState.Calls -join ',') -ne 'create,upload,view,edit') { throw 'Draft/upload/verification/publication ordering failed.' }; Write-Host 'PASS: complete draft publishes only after verified upload'
     $testState.Calls.Clear(); $testState.Incomplete=$true

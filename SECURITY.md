@@ -6,7 +6,7 @@ Security fixes go into the latest stable release. Please update before reporting
 
 ## Reporting a vulnerability
 
-Use GitHub's private reporting: open the [Security tab](https://github.com/adityabhanushali-arch/FullTilt/security/advisories/new) and choose **Report a vulnerability**. Please don't file public issues for security problems.
+Use GitHub's private reporting: open the [Security tab](https://github.com/AadityaBhanushali/FullTilt/security/advisories/new) and choose **Report a vulnerability**. Please don't file public issues for security problems.
 
 Include the FullTilt version, Windows version, what you observed and, if possible, steps to reproduce. You can expect an acknowledgement within a few days. FullTilt is maintained by one person, so fixes are made on a best-effort basis.
 
