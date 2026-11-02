@@ -68,39 +68,45 @@ To undo it any time, double-click **`Restore_Windows_Default_Controller_Navigati
 
 Windows may warn you about `FullTilt.exe` because it isn't code-signed yet: choose **More info → Run anyway**.
 
-## See it in action
+## What you can do with FullTilt
 
-Everything below is the real FullTilt window, recorded from the 1.0.0 release with factory settings.
+### 1. Create and customize pie menus
 
-### Reassign any button in a couple of clicks
+Pie menus put a group of actions one flick away. Hold the button assigned to a menu, point the stick at an action and release to run it. FullTilt comes with menus for Windows, editing, browsing, media and keyboard actions. You can change any of them or build your own, with two to eight segments each.
 
-Pick a button on the controller or in the list, search the action library, choose an action. Edits stay as a draft until you press **Save changes**, and Undo, Redo and Discard are always one click away.
+<p align="center"><img src="docs/media/pie-menus.gif" alt="Switching between the Media, Browsing, Windows, Editing and Keyboard pie menus, then creating a new menu and filling its segments with Copy, Paste, Undo and Select All" width="900"></p>
 
-<p align="center"><img src="docs/media/keybindings-assign.gif" alt="Selecting controller buttons, then searching for Copy and assigning it to the A button as an unsaved draft" width="900"></p>
+### 2. Adjust cursor speed and precision
 
-### Tune the cursor to your hand
+A joystick has two jobs as a mouse: crossing the screen quickly and landing on small targets. One speed setting can't do both well. FullTilt uses three speeds that work together:
 
-Normal, precision and boosted speeds are separate settings, so slow, careful pointing and fast desktop-wide sweeps both feel right. Movement changes apply instantly.
+- **Normal** for everyday movement.
+- **Speed Boost** for crossing the screen fast while a button is held (LT by default).
+- **Precision** for slowing down on small buttons, links and text. Assign it to any button.
 
-<p align="center"><img src="docs/media/movement-speed.gif" alt="Dragging the Normal cursor speed slider from 600 to 2000 pixels per second and back" width="640"></p>
+Dead zones ignore small amounts of stick drift, and the response curve sets how quickly the cursor speeds up as you push the stick further. Changes apply immediately.
 
-### Hold, flick, release: pie menus
+<p align="center"><img src="docs/media/movement-speed.gif" alt="Adjusting the Normal, Precision and Boosted cursor speeds, a stick dead zone, the response presets and the response curve" width="900"></p>
 
-Hold a button, aim with the stick, release to run the highlighted action. FullTilt ships with Media, Browsing, Windows, Editing and Keyboard menus, each with its own D-pad shortcuts while open.
+### 3. Customize controller button assignments
 
-<p align="center"><img src="docs/media/pie-menus.gif" alt="Switching between the Media, Browsing, Windows, Editing and Keyboard pie menus in the editor" width="720"></p>
+Every button, trigger and D-pad direction can be remapped. Choose from mouse clicks, keyboard keys and Windows actions such as Task View or Show Desktop, or record your own keyboard shortcut. Changes stay as a draft until you select **Save changes**, and Undo, Redo and Discard are always available.
 
-### Build your own in seconds
+<p align="center"><img src="docs/media/keybindings-assign.gif" alt="Selecting the Y button, opening the Apps and Workspace actions, assigning Show Desktop and saving" width="900"></p>
 
-**New pie menu** creates four empty segments. Click a segment, search, pick an action. Menus can have between two and eight segments.
+### 4. Assign different D-pad controls to each pie menu
 
-<p align="center"><img src="docs/media/pie-build.gif" alt="Creating a new pie menu and filling its four segments with Copy, Paste, Undo and Select All" width="720"></p>
+While a pie menu is open, the D-pad can do something specific to that menu. The Media menu uses it for volume, and the Browsing menu uses it for zooming and moving between tabs. When the menu closes, the D-pad goes back to its usual assignments, so these extra controls never replace your main layout.
 
-### Dark, Light or follow Windows
+<p align="center"><img src="docs/media/pie-dpad.gif" alt="Comparing the D-pad assignments of the Media, Browsing and Windows pie menus, then setting the Windows menu's D-pad to maximize, minimize and snap windows" width="900"></p>
 
-<p align="center"><img src="docs/media/themes.gif" alt="Switching FullTilt between Dark and Light themes in Settings" width="720"></p>
+### 5. Save and switch between profiles
 
-> The images and animations show FullTilt's interface running paused on an isolated install with no controller attached. They are real captures of the app window, not recordings of controller hardware or of the pie overlay on a desktop.
+A profile stores a complete setup: button assignments, pie menus and movement settings. Create separate profiles for gaming, browsing or general desktop use, and switch between them from the profile menu at the top of the window.
+
+<p align="center"><img src="docs/media/profiles.gif" alt="Creating a Gaming profile, changing its cursor speeds, then switching between the Default and Gaming profiles" width="900"></p>
+
+<sub>Animations are recorded from the FullTilt app window, with the pointer added so each click is easy to follow.</sub>
 
 ## Features
 
