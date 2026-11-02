@@ -1,4 +1,4 @@
-tools/Windows-Navigation-Fix/*.ps1 text eol=lf
-tools/Windows-Navigation-Fix/*.md text eol=lf
+tools/Step-1-Windows-Controller-Fix/*.ps1 text eol=lf
+tools/Step-1-Windows-Controller-Fix/*.txt text eol=crlf
 *.png binary
 *.gif binary

@@ -1,5 +1,14 @@
 # No live registry/file-backup backend is constructed by these tests.
-. "$PSScriptRoot/../tools/Windows-Navigation-Fix/FullTilt-Navigation-Fix.Common.ps1"
+# Both fix scripts embed the same shared code; check it matches, then load it without running either script.
+$fixFolder="$PSScriptRoot/../tools/Step-1-Windows-Controller-Fix"
+$shared=foreach($name in @('Turn-Off-Windows-Controller-Navigation.ps1','Turn-On-Windows-Controller-Navigation.ps1')){
+    $text=[IO.File]::ReadAllText((Join-Path $fixFolder $name))
+    $match=[regex]::Match($text,'(?s)# region shared code.*?# endregion shared code')
+    if(-not $match.Success){throw "Shared code block missing: $name"}
+    $match.Value
+}
+if($shared[0] -cne $shared[1]){throw 'Turn-Off and Turn-On scripts contain different shared code.'}
+. ([scriptblock]::Create($shared[0]))
 $cases=@(
     @{Exists=$false;Key=$false;Kind='';Data=$null},
     @{Exists=$false;Key=$true;Kind='';Data=$null},
@@ -45,7 +54,7 @@ foreach($case in $cases){
     if(-not $failed -or $state.Writes -ne $writes){throw 'Foreign backup was accepted.'}
     $passed++
 }
-$files=Get-ChildItem -LiteralPath "$PSScriptRoot/../tools/Windows-Navigation-Fix" -File
+$files=Get-ChildItem -LiteralPath $fixFolder -File
 foreach($file in $files){
     if($file.Extension -eq '.ps1'){$errors=$null;$null=[System.Management.Automation.Language.Parser]::ParseFile($file.FullName,[ref]$null,[ref]$errors);if($errors.Count){throw "Invalid script syntax: $($file.Name)"}}
     if($file.Extension -eq '.reg'){

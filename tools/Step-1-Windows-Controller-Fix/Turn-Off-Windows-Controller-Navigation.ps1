@@ -1,4 +1,8 @@
-# Shared implementation; dot-sourcing this file never changes Windows.
+#Requires -Version 5.1
+#Requires -RunAsAdministrator
+# Turns off Windows' built-in controller navigation so it stops fighting FullTilt.
+# Your original setting is saved first. Run Turn-On-Windows-Controller-Navigation.ps1 to undo.
+# region shared code (must stay identical in both Turn-Off and Turn-On scripts)
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 function Assert-NavigationSnapshot($State) {
@@ -17,7 +21,7 @@ function Assert-NavigationSnapshot($State) {
 }
 function New-NavigationBackend {
     $principal = [Security.Principal.WindowsPrincipal]::new([Security.Principal.WindowsIdentity]::GetCurrent())
-    if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { throw 'Open PowerShell as Administrator, then run the matching script.' }
+    if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { throw 'Open PowerShell as Administrator, then run this script again.' }
     # Keep this folder name: it holds backups created by FullTilt 1.0.0, which Undo must still find.
     $folder = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'FullTilt-Controller-Navigation-Fix'
     $backup = Join-Path $folder 'original-state.json'
@@ -101,16 +105,18 @@ function Invoke-NavigationFix {
         & $Backend.Disable
         $current=& $Backend.Read
         if (-not $current.ValueExisted -or $current.Kind -ne 'DWord' -or $current.Data -ne 0) { throw 'Windows did not retain Enabled=0. Original backup retained.' }
-        Write-Host 'Optional mapping disabled. Original state preserved. Restart Windows if needed.'
+        Write-Host 'Done: Windows controller navigation is off. Your original setting is saved. Restart Windows if it still reacts to the controller.'
     }
     else {
-        if ($null -eq $state) { throw 'No original-state backup exists. Nothing changed; do not guess the original value.' }
+        if ($null -eq $state) { throw 'No saved original setting found, so nothing was changed. Run Turn-Off-Windows-Controller-Navigation.ps1 first.' }
         Assert-NavigationSnapshot $state
         & $Backend.Restore $state
         $current=& $Backend.Read
         if ($current.ValueExisted -ne $state.ValueExisted -or ($state.ValueExisted -and
             ($current.Kind -ne $state.Kind -or ($current.Data | ConvertTo-Json -Compress) -cne ($state.Data | ConvertTo-Json -Compress)))) { throw 'Restoration verification failed. Backup retained.' }
         & $Backend.Delete
-        Write-Host 'Original Enabled value/type or absence restored. Restart Windows if needed.'
+        Write-Host 'Done: your original Windows controller navigation setting is back. Restart Windows if needed.'
     }
 }
+# endregion shared code
+Invoke-NavigationFix -Mode Disable
