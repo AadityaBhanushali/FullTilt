@@ -31,7 +31,7 @@ Copy-Item -LiteralPath (Join-Path $repoRoot 'LICENSE') -Destination (Join-Path $
 $notices = Join-Path $licenses 'runtime-notices'
 $utility = Join-Path $staging 'Step-1-Windows-Controller-Fix'
 New-Item -ItemType Directory -Path $utility -Force | Out-Null
-foreach ($name in @('Turn-Off-Windows-Controller-Navigation.ps1','Turn-On-Windows-Controller-Navigation.ps1','README.txt')) {
+foreach ($name in @('Disable_Windows_Controller_UI_Navigation.reg','Restore_Windows_Default_Controller_Navigation.reg','README.txt')) {
     Copy-Item -LiteralPath (Join-Path $repoRoot "tools/Step-1-Windows-Controller-Fix/$name") -Destination $utility -ErrorAction Stop
 }
 $runtimePacks = Get-Content -LiteralPath (Join-Path $package 'runtime-packs.json') -Raw | ConvertFrom-Json

@@ -10,7 +10,7 @@ try {
         $allowed += "FullTilt/Licenses/runtime-notices/$pack/LICENSE.TXT"
         if ($pack -eq 'microsoft.netcore.app.runtime.win-x64' -or $archiveFile.Entries.FullName -contains "FullTilt/Licenses/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT") { $allowed += "FullTilt/Licenses/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT" }
     }
-    foreach ($name in @('Turn-Off-Windows-Controller-Navigation.ps1','Turn-On-Windows-Controller-Navigation.ps1','README.txt')) { $allowed += "FullTilt/Step-1-Windows-Controller-Fix/$name" }
+    foreach ($name in @('Disable_Windows_Controller_UI_Navigation.reg','Restore_Windows_Default_Controller_Navigation.reg','README.txt')) { $allowed += "FullTilt/Step-1-Windows-Controller-Fix/$name" }
     $names = @($archiveFile.Entries | Where-Object { $_.Name.Length -gt 0 } | ForEach-Object { $_.FullName.Replace('\','/') })
     if (@(Compare-Object ($allowed | Sort-Object) ($names | Sort-Object)).Count -ne 0 -or $names.Count -ne $allowed.Count) { throw 'Archive contents differ from the approved allowlist.' }
     $destination = Join-Path $repoRoot ('artifacts/release-verification/' + [Guid]::NewGuid().ToString('N'))
