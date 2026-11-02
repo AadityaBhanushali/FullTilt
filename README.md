@@ -5,10 +5,10 @@
   <img alt="FullTilt" src="docs/media/logo-light.svg" width="360">
 </picture>
 
-## A better way to control your desktop.
+## Dynamic Cursor Control
 
-Turn your game controller into a fully functional mouse and keyboard for Windows.<br>
-Move your cursor, click, scroll and navigate your desktop, all without reaching for a mouse.
+Navigate Windows using your game controller.
+Move your cursor smoothly and precisely, click, scroll, and perform everyday desktop actions without reaching for a mouse.
 
 [![Latest release](https://img.shields.io/github/v/release/AadityaBhanushali/FullTilt?color=C8F35B&labelColor=18251B&label=release)](https://github.com/AadityaBhanushali/FullTilt/releases/latest)
 [![Build](https://github.com/AadityaBhanushali/FullTilt/actions/workflows/build.yml/badge.svg)](https://github.com/AadityaBhanushali/FullTilt/actions/workflows/build.yml)
