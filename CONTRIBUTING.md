@@ -11,7 +11,7 @@ Open an issue for a reproducible bug or a focused feature proposal before making
 | `src/FullTilt` | The WPF application: pages, pie overlay, dialogs, theme, and the packaged `--smoke-test` diagnostics. |
 | `tests/FullTilt.Tests` | Unit tests against fake controllers, fake input sinks and isolated settings. |
 | `scripts` | Build, publish, verify and release scripts. |
-| `tools/Step-1-Windows-Controller-Fix` | The two scripts that turn Windows' controller navigation off and back on. They ship in the release ZIP under the same folder name. |
+| `tools/Step-1-Windows-Controller-Fix` | Two registry files that turn Windows' controller navigation off and back on, plus a README. They ship in the release ZIP under the same folder name. |
 | `docs` | [User guide](docs/USER-GUIDE.md), [release process](docs/RELEASING.md) and the screenshots and animations used in the README. |
 
 ## Build and test

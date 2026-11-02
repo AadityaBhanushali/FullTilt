@@ -97,9 +97,14 @@ Still stuck? [Open an issue](https://github.com/adityabhanushali-arch/FullTilt/i
 
 ## Step 1: Windows controller fix
 
-**The problem:** Windows has its own controller navigation for Start, Quick Settings, notifications and the tray. It reacts to the same controller FullTilt uses, so the two get in each other's way.
+Windows has its own controller navigation for Start, Quick Settings and notifications. It reacts to the same controller FullTilt uses, so the two get in each other's way.
 
-**The fix:** the download includes a `Step-1-Windows-Controller-Fix` folder beside `FullTilt.exe`. `Turn-Off-Windows-Controller-Navigation.ps1` turns Windows' feature off; `Turn-On-Windows-Controller-Navigation.ps1` turns it back on exactly as it was. Run them from PowerShell opened **as administrator**; the step-by-step commands are in the [README](../README.md#2-run-step-1-the-windows-controller-fix-once) and in the folder's [README.txt](../tools/Step-1-Windows-Controller-Fix/README.txt). FullTilt never runs them by itself.
+In the download, open `Step-1-Windows-Controller-Fix`:
+
+- Double-click **`Disable_Windows_Controller_UI_Navigation.reg`** and choose **Yes** to turn Windows' controller navigation off.
+- Double-click **`Restore_Windows_Default_Controller_Navigation.reg`** and choose **Yes** to put Windows back to its default.
+
+Each file changes only the `Enabled` value under `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\ControllerToVKMapping`, for all users on the PC. FullTilt never changes this setting by itself. Results can vary between Windows builds.
 
 ## Limits worth knowing
 

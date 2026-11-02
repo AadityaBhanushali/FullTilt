@@ -17,7 +17,7 @@ Built for couch navigation, and as a gentler alternative to the mouse.
 
 **[⬇ Download for Windows](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** &nbsp;·&nbsp; [How to install](#get-started) &nbsp;·&nbsp; [User guide](docs/USER-GUIDE.md)
 
-<sub>First time? Run <b>Step 1</b> in the download before opening FullTilt. <a href="#get-started">See how</a>.</sub>
+<sub>Download, double-click Step 1, open FullTilt. <a href="#get-started">That's it</a>.</sub>
 
 <br>
 
@@ -48,6 +48,20 @@ If long mouse sessions leave you uncomfortable, a controller lets you point, cli
 
 > [!NOTE]
 > FullTilt is a software tool, not a medical device. It makes no claim to treat, prevent or relieve RSI or any other condition. If you have pain, numbness or tingling, please talk to a health professional.
+
+## Get started
+
+**[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** and extract it (right-click → **Extract All**). Then:
+
+**Step 1:** open the `Step-1-Windows-Controller-Fix` folder, double-click **`Disable_Windows_Controller_UI_Navigation.reg`** and choose **Yes**.
+To undo it any time, double-click **`Restore_Windows_Default_Controller_Navigation.reg`** in the same folder.
+
+**Step 2:** open **`FullTilt.exe`**.
+
+> [!TIP]
+> You can open FullTilt and try it before Step 1. The fix just turns off Windows' own controller navigation (in Start, Quick Settings and notifications) so it doesn't get in FullTilt's way. It makes the experience smoother.
+
+Windows may warn you about `FullTilt.exe` because it isn't code-signed yet: choose **More info → Run anyway**.
 
 ## See it in action
 
@@ -93,7 +107,7 @@ Hold a button, aim with the stick, release to run the highlighted action. FullTi
 | **Pie menus** | Build as many menus as you like, each with 2 to 8 segments, its own D-pad overrides and a controller button of your choice to open it. One global size setting scales them all. |
 | **Profiles** | Save and switch whole configurations. Settings are portable: they live in a `Profiles` folder next to `FullTilt.exe`. |
 | **Safe by design** | A pause shortcut (default: **D-pad Up + B + Y**), a **Release held inputs** panic button, and neutral-stick re-arming after pauses or disconnects so nothing gets stuck. |
-| **Windows controller fix** | The bundled Step 1 scripts turn off Windows' own controller navigation so it stops competing with FullTilt, and turn it back on when you want. |
+| **Windows controller fix** | Two double-click files in the download turn Windows' own controller navigation off so it stops competing with FullTilt, and back on whenever you want. |
 | **Touch keyboard** | Show and hide the Windows touch keyboard from a controller button. |
 | **Quiet in the tray** | Closing the window keeps FullTilt running in the tray; an optional on-screen indicator shows when it is paused. |
 | **Updates you control** | Optional GitHub release checks. FullTilt never downloads or replaces itself. |
@@ -123,50 +137,7 @@ Hold a button, aim with the stick, release to run the highlighted action. FullTi
 <img src="docs/media/keybindings-light.png" alt="FullTilt Keybindings page in the Light theme" width="900">
 </details>
 
-## Get started
-
-**The download contains:**
-
-```
-FullTilt/
-├─ FullTilt.exe                    the app
-├─ Step-1-Windows-Controller-Fix/  run this once, first
-└─ Licenses/                       legal text, nothing to do here
-```
-
-### 1. Download and extract
-
-1. **[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)**. Use that file, not GitHub's "Source code" archive.
-2. **Right-click the ZIP → Extract All**, and put the folder somewhere you'll keep it, such as `Documents\FullTilt`.
-
-### 2. Run Step 1: the Windows controller fix (once)
-
-**The problem:** Windows has its own controller navigation built in. With a controller connected, Windows uses it to move around Start, Quick Settings and notifications, while FullTilt uses it to move your mouse. Both react at once and get in each other's way.
-
-**The fix:** the `Step-1-Windows-Controller-Fix` folder turns Windows' controller navigation off, so only FullTilt responds. Your original setting is saved first, and you can turn it back on at any time.
-
-1. Open the Start menu, type **PowerShell**, right-click it and choose **Run as administrator**.
-2. Go to the Step 1 folder (change the path to where you extracted FullTilt):
-
-   ```powershell
-   cd "C:\Path\To\FullTilt\Step-1-Windows-Controller-Fix"
-   ```
-
-3. Run:
-
-   ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Turn-Off-Windows-Controller-Navigation.ps1
-   ```
-
-4. You'll see **"Done"**. If Windows still reacts to the controller, restart your PC.
-
-To undo it, run `Turn-On-Windows-Controller-Navigation.ps1` the same way. More detail is in the folder's [README](tools/Step-1-Windows-Controller-Fix/README.txt).
-
-### 3. Start FullTilt
-
-Connect your controller, leave the sticks centered and open **`FullTilt.exe`**. That's it: nothing else to install, and the controls below work straight away. FullTilt creates a `Profiles` folder next to itself to save your settings.
-
-> Windows may warn you about the app because it isn't code-signed yet. Choose **More info → Run anyway**. Want to check the download? Compare it with `SHA256SUMS.txt` on the release page.
+## Controls and requirements
 
 ### Default controls
 
@@ -190,7 +161,7 @@ To use a pie menu, hold its button, point the cursor stick at a segment, then re
 
 - Windows 11 x64 (build 22000 or later)
 - An **XInput** controller, for example an Xbox controller or any pad that presents as one. Other controllers need an external XInput mapping tool; FullTilt does not bundle one.
-- A writable folder. No installer, account or internet connection is needed; the internet is only used for optional update checks. Administrator rights are needed only once, for the Step 1 fix.
+- A writable folder. No installer, account or internet connection is needed; the internet is only used for optional update checks. Windows asks for permission once, when you apply the Step 1 fix.
 
 ## Privacy and safety
 
