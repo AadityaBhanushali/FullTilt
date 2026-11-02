@@ -5,12 +5,12 @@ $expectedHash = ((Get-Content -LiteralPath (Join-Path (Split-Path -Parent $Archi
 if ((Get-FileHash -LiteralPath $Archive -Algorithm SHA256).Hash -ne $expectedHash) { throw 'Release archive checksum mismatch.' }
 $archiveFile = [IO.Compression.ZipFile]::OpenRead($Archive)
 try {
-    $allowed = @('FullTilt/FullTilt.exe','FullTilt/SHA256SUMS.txt','FullTilt/README.md','FullTilt/LICENSE','FullTilt/CHANGELOG.md','FullTilt/THIRD-PARTY-NOTICES.md','FullTilt/CONTRIBUTING.md','FullTilt/docs/USER-GUIDE.md','FullTilt/docs/RELEASING.md','FullTilt/docs/screenshots/keybindings.png','FullTilt/docs/screenshots/movement.png','FullTilt/docs/screenshots/pie-menus.png')
+    $allowed = @('FullTilt/FullTilt.exe','FullTilt/Licenses/FullTilt-LICENSE.txt')
     foreach ($pack in @('microsoft.netcore.app.runtime.win-x64', 'microsoft.windowsdesktop.app.runtime.win-x64')) {
-        $allowed += "FullTilt/runtime-notices/$pack/LICENSE.TXT"
-        if ($pack -eq 'microsoft.netcore.app.runtime.win-x64' -or $archiveFile.Entries.FullName -contains "FullTilt/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT") { $allowed += "FullTilt/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT" }
+        $allowed += "FullTilt/Licenses/runtime-notices/$pack/LICENSE.TXT"
+        if ($pack -eq 'microsoft.netcore.app.runtime.win-x64' -or $archiveFile.Entries.FullName -contains "FullTilt/Licenses/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT") { $allowed += "FullTilt/Licenses/runtime-notices/$pack/THIRD-PARTY-NOTICES.TXT" }
     }
-    foreach ($name in @('FullTilt-Navigation-Fix.Common.ps1','Apply-FullTilt-Navigation-Fix.ps1','Undo-FullTilt-Navigation-Fix.ps1','README.md')) { $allowed += "FullTilt/Windows-Navigation-Fix/$name" }
+    foreach ($name in @('Turn-Off-Windows-Controller-Navigation.ps1','Turn-On-Windows-Controller-Navigation.ps1','README.txt')) { $allowed += "FullTilt/Step-1-Windows-Controller-Fix/$name" }
     $names = @($archiveFile.Entries | Where-Object { $_.Name.Length -gt 0 } | ForEach-Object { $_.FullName.Replace('\','/') })
     if (@(Compare-Object ($allowed | Sort-Object) ($names | Sort-Object)).Count -ne 0 -or $names.Count -ne $allowed.Count) { throw 'Archive contents differ from the approved allowlist.' }
     $destination = Join-Path $repoRoot ('artifacts/release-verification/' + [Guid]::NewGuid().ToString('N'))
@@ -18,14 +18,15 @@ try {
 }
 finally { $archiveFile.Dispose() }
 $app = Join-Path $destination 'FullTilt'
-foreach ($file in Get-ChildItem -LiteralPath (Join-Path $app 'Windows-Navigation-Fix') -File) {
-    $source=Join-Path $repoRoot ('tools/Windows-Navigation-Fix/'+$file.Name)
+foreach ($file in Get-ChildItem -LiteralPath (Join-Path $app 'Step-1-Windows-Controller-Fix') -File) {
+    $source=Join-Path $repoRoot ('tools/Step-1-Windows-Controller-Fix/'+$file.Name)
     if ((Get-FileHash -LiteralPath $source).Hash -ne (Get-FileHash -LiteralPath $file.FullName).Hash) { throw 'Archived utility differs from reviewed source.' }
 }
 & "$PSScriptRoot/verify-privacy.ps1" -Path $app -VerifyRuntimeNotices
 $exe = Join-Path $app 'FullTilt.exe'
 if ([Diagnostics.FileVersionInfo]::GetVersionInfo($exe).FileVersion -ne "$ExpectedVersion.0") { throw 'Archived executable has the wrong version.' }
-$exeHash = ((Get-Content -LiteralPath (Join-Path $app 'SHA256SUMS.txt')) -split ' ')[0]
+# The ZIP carries no checksum file; compare against the verified published package instead.
+$exeHash = ((Get-Content -LiteralPath (Join-Path $repoRoot "Finals/FullTilt-v$ExpectedVersion-win-x64/SHA256SUMS.txt")) -split ' ')[0]
 if ((Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash -ne $exeHash) { throw 'Archived executable checksum mismatch.' }
 # Simulate replacement with isolated profile files. Never read or write live settings here.
 $profiles = Join-Path $app 'Profiles'

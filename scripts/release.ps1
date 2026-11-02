@@ -23,18 +23,16 @@ $zip = Join-Path $output 'FullTilt-win-x64.zip'
 if (Test-Path -LiteralPath $zip) { throw 'Refusing to replace an existing release ZIP. Select a new output directory.' }
 New-Item -ItemType Directory -Path $staging -Force | Out-Null
 # Explicit allowlist: never recurse over Finals, which can contain personal Profiles.
-foreach ($name in @('FullTilt.exe', 'SHA256SUMS.txt')) { Copy-Item -LiteralPath (Join-Path $package $name) -Destination $staging }
-foreach ($name in @('README.md', 'LICENSE', 'CHANGELOG.md', 'THIRD-PARTY-NOTICES.md', 'CONTRIBUTING.md')) { Copy-Item -LiteralPath (Join-Path $repoRoot $name) -Destination $staging }
-foreach ($relative in @('docs/USER-GUIDE.md','docs/RELEASING.md','docs/screenshots/keybindings.png','docs/screenshots/movement.png','docs/screenshots/pie-menus.png')) {
-    $targetFile = Join-Path $staging $relative
-    New-Item -ItemType Directory -Path (Split-Path -Parent $targetFile) -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $repoRoot $relative) -Destination $targetFile -ErrorAction Stop
-}
-$notices = Join-Path $staging 'runtime-notices'
-$utility = Join-Path $staging 'Windows-Navigation-Fix'
+# Users get only the app, the Step 1 fix and the licenses the bundled runtime requires.
+Copy-Item -LiteralPath (Join-Path $package 'FullTilt.exe') -Destination $staging
+$licenses = Join-Path $staging 'Licenses'
+New-Item -ItemType Directory -Path $licenses -Force | Out-Null
+Copy-Item -LiteralPath (Join-Path $repoRoot 'LICENSE') -Destination (Join-Path $licenses 'FullTilt-LICENSE.txt')
+$notices = Join-Path $licenses 'runtime-notices'
+$utility = Join-Path $staging 'Step-1-Windows-Controller-Fix'
 New-Item -ItemType Directory -Path $utility -Force | Out-Null
-foreach ($name in @('FullTilt-Navigation-Fix.Common.ps1','Apply-FullTilt-Navigation-Fix.ps1','Undo-FullTilt-Navigation-Fix.ps1','README.md')) {
-    Copy-Item -LiteralPath (Join-Path $repoRoot "tools/Windows-Navigation-Fix/$name") -Destination $utility -ErrorAction Stop
+foreach ($name in @('Turn-Off-Windows-Controller-Navigation.ps1','Turn-On-Windows-Controller-Navigation.ps1','README.txt')) {
+    Copy-Item -LiteralPath (Join-Path $repoRoot "tools/Step-1-Windows-Controller-Fix/$name") -Destination $utility -ErrorAction Stop
 }
 $runtimePacks = Get-Content -LiteralPath (Join-Path $package 'runtime-packs.json') -Raw | ConvertFrom-Json
 foreach ($runtimePack in $runtimePacks) {

@@ -5,7 +5,8 @@ Maintainer notes for cutting a release. Contributors don't need this.
 - **Version**: the single `<Version>` in `src/FullTilt/FullTilt.csproj`. The app header, About box, Settings and the update checker all read it. Tags are `vMAJOR.MINOR.PATCH` and must match.
 - **Assets**: `FullTilt-win-x64.zip`, `SHA256SUMS.txt` and `RELEASE_NOTES.md`.
 - **Update integration**: the in-app update check reads the latest stable GitHub release. Repository and creator links live in `src/FullTilt/Assets/LaunchLinks.json`.
-- **License**: MIT. Microsoft .NET runtime licenses ship inside each ZIP (see `THIRD-PARTY-NOTICES.md`).
+- **ZIP contents**: only `FullTilt.exe`, the `Step-1-Windows-Controller-Fix` folder and a `Licenses` folder (FullTilt's MIT license plus the Microsoft .NET runtime licenses it is required to ship). Everything else stays on GitHub.
+- **License**: MIT. See `THIRD-PARTY-NOTICES.md`.
 
 ## Prepare
 
