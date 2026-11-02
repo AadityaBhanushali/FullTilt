@@ -1,116 +1,209 @@
-# FullTilt
+<div align="center">
 
-**Your controller, your desktop.**
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/logo-dark.svg">
+  <img alt="FullTilt" src="docs/media/logo-light.svg" width="360">
+</picture>
 
-FullTilt is a free, open-source Windows application that lets you use a game controller as an alternative to a traditional mouse and keyboard. Whether you're navigating your PC from the couch or looking to reduce prolonged mouse use, FullTilt offers a different way to control your desktop.
+### Your controller, your desktop.
 
-## [Download Latest Version](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)
+**Use a game controller as a mouse and keyboard on Windows.**
+Built for couch navigation, and as a gentler alternative to the mouse.
 
-Download **FullTilt-win-x64.zip** from the latest stable GitHub Release. The first public version is **1.0.0**. The link becomes available when that release is published; this repository was prepared and verified locally first.
+[![Latest release](https://img.shields.io/github/v/release/adityabhanushali-arch/FullTilt?color=C8F35B&labelColor=18251B&label=release)](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)
+[![Build](https://github.com/adityabhanushali-arch/FullTilt/actions/workflows/build.yml/badge.svg)](https://github.com/adityabhanushali-arch/FullTilt/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-C8F35B?labelColor=18251B)](LICENSE)
+![Windows 11 x64](https://img.shields.io/badge/Windows%2011-x64-C8F35B?labelColor=18251B)
 
-![FullTilt controller bindings](docs/screenshots/keybindings.png)
+**[⬇ Download for Windows](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** &nbsp;·&nbsp; [User guide](docs/USER-GUIDE.md) &nbsp;·&nbsp; [Changelog](CHANGELOG.md)
 
-## What FullTilt does
+<br>
 
-- Move the pointer and scroll with an XInput game controller.
-- Click, drag, use keyboard shortcuts and customize controller bindings.
-- Adjust normal, precision and boosted cursor speeds independently, plus scrolling, dead zones and response.
-- Open directional pie menus with customizable segments and contextual D-pad actions.
-- Use Windows navigation, window management, editing and media commands.
-- Keep multiple profiles and portable settings, with Save/Discard and per-tab Undo/Redo for assignments.
-- Use Dark, Light or system theme, configurable pause, tray controls and optional GitHub update checks.
+<img src="docs/screenshots/keybindings.png" alt="FullTilt's Keybindings page: every controller button listed beside a picture of the controller, with the Assign action panel on the right" width="900">
 
-Windows/application permissions, keyboard layouts and target-app behavior can affect synthetic input. FullTilt does not hide the controller from games or other software.
+</div>
 
-## Requirements
+## Why FullTilt
 
-- **Windows 11 x64** (build 22000 or later).
-- An **XInput-compatible controller**, such as an Xbox-compatible gamepad. Other controller APIs require an external XInput mapping tool; FullTilt does not bundle one.
-- A writable application folder and temporary directory. No installer, administrator access, account or separately installed .NET runtime is required for the portable ZIP.
-- Internet access only for GitHub update checks and external links. Controller navigation works offline.
+FullTilt turns an Xbox-style controller into a complete pointer and keyboard for Windows. One stick moves the cursor, the other scrolls, the face buttons click, and radial **pie menus** put your shortcuts under your thumb. There is no installer, account, or service. Download, unzip, run.
 
-## Install and start
+<table>
+<tr>
+<td width="50%" valign="top">
 
-1. Download the portable **FullTilt-win-x64.zip**, rather than GitHub's source-code ZIP.
-2. Extract the complete folder to a writable location. Do not run from inside the ZIP.
-3. Connect your controller and run **FullTilt.exe**.
-4. Center the sticks and release controller buttons before input arms. Open Keybindings, Movement, Pie Menus or Settings to adjust the setup.
+### 🛋️ Navigate Windows from the couch
+Browse, watch, read and manage windows from across the room without a keyboard on your lap or a mouse on a cushion. Media controls, browser tabs, window snapping and a touch keyboard are one pie menu away.
 
-The unsigned executable may show a Windows reputation prompt. The included .NET runtime extracts native files under the current user's temporary directory, which must be writable. You can start with `FullTilt.exe --paused` to begin with controller output paused.
+</td>
+<td width="50%" valign="top">
 
-### Current default setup
+### 🖱️ A different way to use the pointer
+If long mouse sessions leave you uncomfortable, a controller lets you point, click and scroll with a different grip and posture. Pair it with the **Precision** and **Speed Boost** modes to keep movements small and relaxed, and customize every control to fit how you work.
 
-| Control | Default behavior |
+</td>
+</tr>
+</table>
+
+> [!NOTE]
+> FullTilt is a software tool, not a medical device. It makes no claim to treat, prevent or relieve RSI or any other condition. If you have pain, numbness or tingling, please talk to a health professional.
+
+## See it in action
+
+Everything below is the real FullTilt window, recorded from the 1.0.0 release with factory settings.
+
+### Reassign any button in a couple of clicks
+
+Pick a button on the controller or in the list, search the action library, choose an action. Edits stay as a draft until you press **Save changes**, and Undo, Redo and Discard are always one click away.
+
+<p align="center"><img src="docs/media/keybindings-assign.gif" alt="Selecting controller buttons, then searching for Copy and assigning it to the A button as an unsaved draft" width="900"></p>
+
+### Tune the cursor to your hand
+
+Normal, precision and boosted speeds are separate settings, so slow, careful pointing and fast desktop-wide sweeps both feel right. Movement changes apply instantly.
+
+<p align="center"><img src="docs/media/movement-speed.gif" alt="Dragging the Normal cursor speed slider from 600 to 2000 pixels per second and back" width="640"></p>
+
+### Hold, flick, release: pie menus
+
+Hold a button, aim with the stick, release to run the highlighted action. FullTilt ships with Media, Browsing, Windows, Editing and Keyboard menus, each with its own D-pad shortcuts while open.
+
+<p align="center"><img src="docs/media/pie-menus.gif" alt="Switching between the Media, Browsing, Windows, Editing and Keyboard pie menus in the editor" width="720"></p>
+
+### Build your own in seconds
+
+**New pie menu** creates four empty segments. Click a segment, search, pick an action. Menus can have between two and eight segments.
+
+<p align="center"><img src="docs/media/pie-build.gif" alt="Creating a new pie menu and filling its four segments with Copy, Paste, Undo and Select All" width="720"></p>
+
+### Dark, Light or follow Windows
+
+<p align="center"><img src="docs/media/themes.gif" alt="Switching FullTilt between Dark and Light themes in Settings" width="720"></p>
+
+> The images and animations show FullTilt's interface running paused on an isolated install with no controller attached. They are real captures of the app window, not recordings of controller hardware or of the pie overlay on a desktop.
+
+## Features
+
+| | |
 | --- | --- |
-| Left / right stick | Cursor / scrolling |
-| A / X / Y | Left / right / middle mouse hold |
-| B | Recorded Caps Lock, held until release |
-| D-pad | Arrow keys |
-| LT | Speed Boost while held |
-| LB / RB | Media / Editing pie menu |
-| L3 / R3 | Windows pie menu |
-| RT | Keyboard pie menu |
-| D-pad Up + B + Y | Hold together to pause or resume |
+| **Pointer & scrolling** | Cursor on either stick, separate **normal / precision / boosted** speeds, independent scroll speeds, reverse scroll, adjustable dead zones and a response curve (Linear, Balanced, Fine control or custom). |
+| **100+ built-in actions** | Mouse buttons and drag lock, arrow and page keys, modifiers, copy/paste/undo, window snap and maximize, task view, virtual desktops, browser tabs, media keys, screenshots, apps and more. |
+| **Record any shortcut** | Press a real key combination to bind it to a button, pie segment or D-pad direction. |
+| **Pie menus** | Build as many menus as you like, each with 2 to 8 segments, its own D-pad overrides and a controller button of your choice to open it. One global size setting scales them all. |
+| **Profiles** | Save and switch whole configurations. Settings are portable: they live in a `Profiles` folder next to `FullTilt.exe`. |
+| **Safe by design** | A pause shortcut (default: **D-pad Up + B + Y**), a **Release held inputs** panic button, and neutral-stick re-arming after pauses or disconnects so nothing gets stuck. |
+| **Windows navigation fix** | A bundled tool turns off Windows' built-in controller navigation so it stops competing with FullTilt, and undoes it on request. |
+| **Touch keyboard** | Show and hide the Windows touch keyboard from a controller button. |
+| **Quiet in the tray** | Closing the window keeps FullTilt running in the tray; an optional on-screen indicator shows when it is paused. |
+| **Updates you control** | Optional GitHub release checks. FullTilt never downloads or replaces itself. |
 
-These defaults capture the creator-approved saved Default profile from 2026-11-01: normal **600 px/s**, precision **200 px/s**, boosted **3000 px/s**, scrolling **10/40 steps/s**, dead zones **5%**, response **260%**, and desktop pie size **120%**. Five menus are included, including Browsing, which can be assigned to another control. The keyboard pie includes Enter, Backspace and Space D-pad overrides. Existing installations keep their saved configuration.
+<table>
+<tr>
+<td width="50%"><img src="docs/media/pie-wheel.png" alt="The Media pie menu with six segments and its D-pad overrides"></td>
+<td width="50%"><img src="docs/media/scrolling-response.png" alt="Scroll speed sliders and the Linear, Balanced and Fine control response presets"></td>
+</tr>
+<tr>
+<td align="center"><sub>Pie menus with per-menu D-pad actions</sub></td>
+<td align="center"><sub>Scrolling and cursor response</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/media/pause-shortcut.png" alt="Pause shortcut editor showing the B, Y and D-pad Up combination"></td>
+<td width="50%"><img src="docs/media/dead-zones.png" alt="Left and right stick dead zone sliders"></td>
+</tr>
+<tr>
+<td align="center"><sub>A pause shortcut you can change</sub></td>
+<td align="center"><sub>Stick dead zones</sub></td>
+</tr>
+</table>
 
-Movement and Settings apply/save immediately. Keybindings and Pie Menus remain drafts until **Save changes**. **Discard**, Undo and Redo let you review edits; switching profiles or closing resolves drafts with Save/Discard/Cancel. New pie menus start with four empty segments. Menu size is global across desktop pies and profiles; the editor preview fits its own pane independently.
+<details>
+<summary><b>Light theme</b></summary>
+<br>
+<img src="docs/media/keybindings-light.png" alt="FullTilt Keybindings page in the Light theme" width="900">
+</details>
 
-Hold a pie's activation button, point the cursor-role stick at a segment, then release the same button to execute. Keep the stick centered briefly before releasing to cancel. Configured D-pad actions work while that pie is open. Pause, disconnect and Release held inputs release FullTilt-owned input and require neutral rearming.
+## Get started
 
-### Pause and exit
+1. **[Download `FullTilt-win-x64.zip`](https://github.com/adityabhanushali-arch/FullTilt/releases/latest)** from the latest release. Use that file, not GitHub's "Source code" archive.
+2. **Extract the whole folder** somewhere you can write to, such as `Documents\FullTilt`. Don't run it from inside the ZIP.
+3. **Connect your controller**, leave the sticks centered, then run **`FullTilt.exe`**.
+4. **Switch off Windows' own controller navigation** with the included Windows Navigation Fix ([next section](#important-switch-off-windows-own-controller-navigation)). Skip this only if Windows never reacts to your controller outside FullTilt.
 
-Use the configurable pause shortcut or **Settings → Pause** to suspend controller output. **Release held inputs** clears owned keys, mouse buttons and active modes. Closing the settings window keeps FullTilt running in the tray. **File → Exit FullTilt** or tray **Exit** stops the application completely after resolving pending edits.
+The .NET runtime is included, and the defaults below work immediately.
 
-## Profiles, updates and rollback
+> Windows may show a reputation prompt because the executable is not code-signed. Each release lists a SHA-256 checksum (`SHA256SUMS.txt`) so you can verify the download. Start with `FullTilt.exe --paused` to launch with controller output paused.
 
-All controller profiles, keybindings, pie menus and settings live in **Profiles/settings.json** beside FullTilt.exe. Theme, window mode and update preferences live in **Profiles/app-preferences.json**. Copy the entire Profiles folder when moving FullTilt. Startup registration is opt-in and belongs to your Windows account; re-enable it from a new location if you move the executable.
+### Important: switch off Windows' own controller navigation
 
-To update: exit FullTilt, back up your current folder, then extract the new application files over it. **Keep your Profiles folder.** Release ZIPs contain no personal Profiles, so replacing the application files leaves them intact. If using a new directory, copy Profiles there **before first launch**. Retain a separate old folder for rollback. Do not run two versions against the same settings file.
+Windows has a built-in controller navigation of its own. While it is on, your controller can also move focus around **Start, Quick Settings, notifications and the tray**, and it fights with FullTilt's cursor control. The download includes a small tool that turns that Windows feature off, and another that puts it back.
 
-**File → Check for Updates** checks the public GitHub latest stable release and shows release notes and a specific release-page link. Automatic checks run asynchronously on startup and roughly every six hours; disable or re-enable them in the update dialog. A dismissed version does not repeatedly notify automatically; manual checks always work. Offline/rate-limit/errors are distinguished from being up to date, and automatic failures stay quiet. Updates remain manual: FullTilt does not download or replace its running executable and requires no GitHub token.
+1. Open **Windows Terminal** or **PowerShell as Administrator**.
+2. Go to the **`Windows-Navigation-Fix`** folder that came in the ZIP beside `FullTilt.exe`:
 
-**Development build migration:** the former “4.8” development build has numeric version **1.4.8**, which compares newer than public **1.0.0**. Development users must manually install this first public version and copy Profiles before starting it. Public 1.0.0 then detects future public versions such as 1.1.0 normally. The profile schema remains 17; executable version changes do not reset saved settings.
+   ```powershell
+   cd "C:\Path\To\FullTilt\Windows-Navigation-Fix"
+   ```
 
-## Windows Controller Navigation Conflict
+3. Run the fix:
 
-Some Windows 11 systems use built-in controller navigation in Start, notification panels and other system interfaces, which can conflict with FullTilt's cursor controls. The download includes an optional **FullTilt-Controller-Navigation-Fix** folder. Use it only if you experience this issue.
+   ```powershell
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Apply-FullTilt-Navigation-Fix.ps1
+   ```
 
-The utility requires administrator privileges and changes one machine-wide Windows registry setting. Its PowerShell entry points preserve the original value/type or absence and provide accurate restoration. It never runs automatically and is not required to install or use FullTilt. See [application and restoration instructions](FullTilt-Controller-Navigation-Fix/README.md). Windows-build behavior varies.
+4. Restart Windows if the change doesn't take effect right away.
 
+To go back to Windows' default behavior at any time, run `Undo-FullTilt-Navigation-Fix.ps1` the same way. The tool changes a single machine-wide registry value, needs administrator rights, saves your original setting first and downloads nothing. FullTilt never runs it on its own. [Details and safety notes](tools/Windows-Navigation-Fix/README.md).
 
-## More application views
+### Default controls
 
-![Movement settings](docs/screenshots/movement.png)
-![Pie menu editor](docs/screenshots/pie-menus.png)
+| Control | Does |
+| --- | --- |
+| **Left stick** | Move the cursor |
+| **Right stick** | Scroll |
+| **A / X / Y** | Left / right / middle mouse button |
+| **B** | Caps Lock (held while pressed) |
+| **D-pad** | Arrow keys |
+| **LT** (hold) | Speed Boost |
+| **LB** (hold) | Media pie menu |
+| **RB** (hold) | Editing pie menu |
+| **L3 / R3** (hold) | Windows pie menu |
+| **RT** (hold) | Keyboard pie menu |
+| **D-pad Up + B + Y** | Pause / resume |
 
-These are renders of the actual WPF application using the approved bundled defaults and an isolated, non-emulating model. They are not hardware-test evidence.
+To use a pie menu, hold its button, point the cursor stick at a segment, then release. Release with the stick centered to cancel. Everything is remappable. See the **[user guide](docs/USER-GUIDE.md)** for profiles, updates and troubleshooting.
 
-## Build, test and release
+### Requirements
 
-Contributors need **Windows**, **PowerShell 7**, **Git** and **.NET SDK 10.0.401** (later patches in that feature band are accepted by global.json). FullTilt uses C#/.NET 10, WPF and Windows XInput, with no third-party NuGet package dependencies. NuGet access may be needed for Microsoft runtime packs and vulnerability checks.
+- Windows 11 x64 (build 22000 or later)
+- An **XInput** controller, for example an Xbox controller or any pad that presents as one. Other controllers need an external XInput mapping tool; FullTilt does not bundle one.
+- A writable folder. No administrator rights, installer, account or internet connection is required; the internet is only used for optional update checks.
+
+## Privacy and safety
+
+- **No telemetry, accounts or background services.** Settings stay in the `Profiles` folder beside the app.
+- FullTilt sends mouse and keyboard input the way a physical device would. Some apps, games and elevated windows may ignore or restrict it.
+- It does not hide your controller from games or other software.
+- The source is MIT-licensed and every release is built by [GitHub Actions](.github/workflows/release.yml) from a tagged commit.
+
+Found a security problem? See [SECURITY.md](SECURITY.md).
+
+## Build from source
+
+You need Windows, PowerShell 7, Git and the .NET SDK pinned in [`global.json`](global.json). FullTilt is C# on .NET 10 with WPF and XInput, and has no third-party NuGet packages.
 
 ```powershell
-./scripts/build.ps1
+./scripts/build.ps1          # restore, build, run the test suite
 ./scripts/publish.ps1 -SkipBuild
-./scripts/verify-package.ps1
-./scripts/release.ps1 -PackageOnly
+./scripts/verify-package.ps1 # checks the published app
 ```
 
-Or run `./scripts/release.ps1` for the full local process once. It builds/tests, publishes a self-contained untrimmed Windows x64 executable, runs isolated package diagnostics, packages **FullTilt-win-x64.zip**, generates SHA-256 checksums/release notes and verifies the extracted portable runtime and settings replacement. Outputs go to `Finals/FullTilt-vVERSION-win-x64` and `artifacts/github-release/vVERSION/`. Each replaced package is snapshotted under artifacts; Profiles are retained. No local script creates or pushes tags or publishes a GitHub release by default.
+The tests use fake controllers and isolated settings: they never emulate real input. See [CONTRIBUTING.md](CONTRIBUTING.md) for the project layout and [docs/RELEASING.md](docs/RELEASING.md) for how releases are cut.
 
-GitHub Actions checks pushes/PRs without release permissions. Only an explicitly approved matching stable tag, such as `v1.0.0`, starts the separate release workflow. It verifies the package, creates a draft, attaches complete assets and then publishes. See [release preparation and approval steps](docs/RELEASING.md) and [contribution guidelines](CONTRIBUTING.md).
+## Contributing and support
 
-Version metadata lives in src/FullTilt/FullTilt.csproj. Header, About, Settings and numeric update comparison use that same version. Repository/portfolio links live in src/FullTilt/Assets/LaunchLinks.json. Runtime data, local credentials, build outputs and archives stay ignored and excluded from public packages. Automated checks use fake inputs and isolated settings; physical controller, focus, GPU blur and display transitions require manual validation.
+Bug reports and focused feature ideas are welcome in [Issues](https://github.com/adityabhanushali-arch/FullTilt/issues/new/choose), or use **File → Report a Problem** inside the app. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-## Report a problem or contribute
+## About
 
-Use [GitHub Issues](https://github.com/adityabhanushali-arch/FullTilt/issues) or **File → Report a Problem**. Include your FullTilt/Windows versions, controller type and reproduction steps. Remove personal data from screenshots and logs. Contributions are welcome under the [MIT License](LICENSE); read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+Created by **Aditya Bhanushali**. [LinkedIn](https://www.linkedin.com/in/adityabhanushali/) · [Behance](https://www.behance.net/gallery/253243865/Motion-Design-Showreel)
 
-## Creator and license
-
-Created by **Aditya Bhanushali**.
-
-[LinkedIn](https://www.linkedin.com/in/adityabhanushali/) · [Behance showreel](https://www.behance.net/gallery/253243865/Motion-Design-Showreel)
-
-FullTilt's code, logo and controller illustration are distributed under the [MIT License](LICENSE). Microsoft runtime components retain their own licenses/notices, included with the portable build; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). FullTilt has no affiliation with controller manufacturers.
+FullTilt's code, logo and controller illustration are available under the [MIT License](LICENSE). Microsoft .NET runtime components keep their own licenses, shipped with each release; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). FullTilt is not affiliated with any controller manufacturer.
