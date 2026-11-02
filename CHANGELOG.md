@@ -2,6 +2,22 @@
 
 Public releases use semantic versions matching the application metadata and `vMAJOR.MINOR.PATCH` tags. Earlier 4.x labels were development builds, not public releases.
 
+## [1.0.1] - 2026-11-01
+
+A simpler download. The app itself is unchanged.
+
+- The ZIP now contains only `FullTilt.exe`, the `Step-1-Windows-Controller-Fix` folder and a `Licenses` folder. Guides, changelog and screenshots live on GitHub instead.
+- The Windows controller fix is now a clear first step, with two scripts that say what they do: `Turn-Off-Windows-Controller-Navigation.ps1` and `Turn-On-Windows-Controller-Navigation.ps1`, plus one plain-text `README.txt`.
+- If you used the fix from 1.0.0, the new Turn-On script can still restore your original setting.
+
+### How to install
+
+1. Download **FullTilt-win-x64.zip** below and extract it (right-click → Extract All).
+2. **Step 1, once:** open PowerShell **as administrator**, go to the `Step-1-Windows-Controller-Fix` folder and run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Turn-Off-Windows-Controller-Navigation.ps1`. This stops Windows' own controller navigation from fighting FullTilt. Full steps are in the folder's `README.txt`.
+3. Connect your controller and open **FullTilt.exe**.
+
+**Updating from 1.0.0:** exit FullTilt, then extract the new files over your old folder. Your `Profiles` folder and settings are kept. You can delete the old `FullTilt-Controller-Navigation-Fix`, `docs` and `runtime-notices` folders and the loose `.md` files.
+
 ## [1.0.0] - 2026-11-01
 
 First public release of FullTilt, a free, open-source controller alternative to the mouse and keyboard for Windows 11 x64.
