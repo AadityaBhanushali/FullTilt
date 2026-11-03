@@ -2,6 +2,23 @@
 
 Public releases use semantic versions matching the application metadata and `vMAJOR.MINOR.PATCH` tags. Earlier 4.x labels were development builds, not public releases.
 
+## [1.2.0] - 2026-11-02
+
+Pie menus now start with useful D-pad actions already set up, so a fresh install is ready to use.
+
+- **Pie menu D-pad actions.** Media: Volume Up, Volume Down, Left, Right. Browsing: Zoom In, Zoom Out, Previous Tab, Next Tab. Windows: Maximize, Minimize, Snap Left, Snap Right. Editing: Cut, Delete, Copy, Paste. Keyboard: Enter, Backspace, Space. They only apply while that menu is open.
+- Everything else keeps its 1.1.0 default: **B** is Escape, the on-screen state indicator and start with Windows are on, and the welcome tour runs on first launch.
+
+Existing installs keep their own settings. **Reset current profile** or **Restore defaults** in Pie Menus applies the new defaults.
+
+### How to install
+
+1. Download **FullTilt-win-x64.zip** below and extract it (right-click → Extract All).
+2. **Step 1:** in `Step-1-Windows-Controller-Fix`, double-click `Disable_Windows_Controller_UI_Navigation.reg` and choose Yes. Undo any time with `Restore_Windows_Default_Controller_Navigation.reg`.
+3. **Step 2:** open **FullTilt.exe**.
+
+**Updating:** exit FullTilt, then extract the new files over your old folder. Your `Profiles` folder and settings are kept.
+
 ## [1.1.0] - 2026-11-02
 
 A guided tour for new users, and FullTilt now starts with Windows by default.

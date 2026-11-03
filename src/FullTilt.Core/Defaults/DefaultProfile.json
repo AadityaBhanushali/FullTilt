@@ -104,10 +104,10 @@
       "PresetId": "windows",
       "SizePercent": 100,
       "DPadActions": [
-        null,
-        null,
-        null,
-        null
+        "MaximizeWindow",
+        "MinimizeWindow",
+        "SnapLeft",
+        "SnapRight"
       ],
       "RecordedSlots": {},
       "RecordedDPad": {}
@@ -129,10 +129,10 @@
       "PresetId": "editing",
       "SizePercent": 100,
       "DPadActions": [
-        null,
-        null,
-        null,
-        null
+        "Cut",
+        "Delete",
+        "Copy",
+        "Paste"
       ],
       "RecordedSlots": {},
       "RecordedDPad": {}

@@ -77,7 +77,7 @@ A fresh install, and **Reset current profile**, use this configuration.
 | RT | Keyboard pie menu |
 | D-pad Up + B + Y | Pause or resume |
 
-Movement defaults: normal cursor **600 px/s**, precision **200 px/s**, boosted **3000 px/s**, scrolling **10** steps/s (**40** boosted), dead zones **5%**, response **260%**, pie menu size **120%**. Five pie menus are included (Media, Browsing, Windows, Editing, Keyboard); Browsing is not bound to a button until you choose one.
+Movement defaults: normal cursor **600 px/s**, precision **200 px/s**, boosted **3000 px/s**, scrolling **10** steps/s (**40** boosted), dead zones **5%**, response **260%**, pie menu size **120%**. Five pie menus are included (Media, Browsing, Windows, Editing, Keyboard); Browsing is not bound to a button until you choose one. Each menu also has D-pad actions that work while it is open: Media (volume, left, right), Browsing (zoom, previous and next tab), Windows (maximize, minimize, snap), Editing (cut, delete, copy, paste) and Keyboard (Enter, Backspace, Space).
 
 ## Troubleshooting
 

@@ -295,7 +295,7 @@ public partial class App : Application
             model.ResetDefaults();
             model.CursorSpeed = 1200;
             if (model.SpeedBoostMultiplier != FactoryDefaults.Create().SpeedBoostMultiplier) throw new InvalidOperationException("Boost default reset failed.");
-            if (model.DPadTapDistance != 5 || model.PrecisionPercent != 50) throw new InvalidOperationException("Reset defaults failed.");
+            if (model.DPadTapDistance != FactoryDefaults.Create().DPadTapDistance || model.PrecisionPercent != FactoryDefaults.Create().PrecisionPercent) throw new InvalidOperationException("Reset defaults failed.");
             model.UpdateStatus(new(0, 1, false, false, null, true, true, true, true));
             if (!model.OverlayStateText.Contains("Ctrl active") || !model.OverlayStateText.Contains("Shift active"))
                 throw new InvalidOperationException("Sticky modifier status is missing.");
